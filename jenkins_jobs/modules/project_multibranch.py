@@ -1025,6 +1025,8 @@ def build_strategies(xml_parent, data):
                 (optional, default false)
         * **regular-branches** (bool): Builds regular branches whenever a
             change is detected. (optional, default None)
+        * **skip-initial-build** (bool): Skip initial build on first branch
+            indexing. (optional, default None)
         * **named-branches** (list): Builds named branches whenever a change
           is detected.
 
@@ -1076,6 +1078,12 @@ def build_strategies(xml_parent, data):
         if bbs_list.get('regular-branches', False):
             XML.SubElement(bbs, ''.join([basic_build_strategies,
             '.BranchBuildStrategyImpl']), {
+                'plugin': 'basic-branch-build-strategies',
+            })
+
+        if bbs_list.get('skip-initial-build', False):
+            XML.SubElement(bbs, ''.join([basic_build_strategies,
+            '.SkipInitialBuildOnFirstBranchIndexing']), {
                 'plugin': 'basic-branch-build-strategies',
             })
 

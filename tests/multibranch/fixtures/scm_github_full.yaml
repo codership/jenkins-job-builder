@@ -28,6 +28,7 @@ scm:
                 ignore-target-only-changes: true
             - change-request: {}
             - regular-branches: true
+            - skip-initial-build: true
             - named-branches:
                 - exact-name:
                     name: 'test'
