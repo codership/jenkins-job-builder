@@ -5,6 +5,7 @@
       <execPattern>**/**.exec</execPattern>
       <classPattern>**/classes</classPattern>
       <sourcePattern>**/src/main/java</sourcePattern>
+      <sourceInclusionPattern>**/*.java,**/*.kt</sourceInclusionPattern>
       <changeBuildStatus>true</changeBuildStatus>
       <inclusionPattern>**/*.class</inclusionPattern>
       <exclusionPattern>**/*Test*.class</exclusionPattern>
