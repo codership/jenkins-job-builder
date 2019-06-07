@@ -249,6 +249,11 @@ class YamlParser(object):
 
         for view in self.data.get('view', {}).values():
             view['name'] = self._getfullname(view)
+
+            if jobs_glob and not matches(view['name'], jobs_glob):
+                logger.debug("Ignoring view {0}".format(view['name']))
+                continue
+
             logger.debug("Expanding view '{0}'".format(view['name']))
             self._formatDescription(view)
             self.views.append(view)
