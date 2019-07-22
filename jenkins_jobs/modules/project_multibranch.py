@@ -308,7 +308,7 @@ def bitbucket_scm(xml_parent, data):
     :arg str head-filter-regex: A regular expression for filtering
         discovered source branches. Requires the :jenkins-wiki:`SCM API Plugin
         <SCM+API+Plugin>`.
-    :arg str discovery-branch: Discovers branches on the repository.
+    :arg str discover-branch: Discovers branches on the repository.
         Valid options: ex-pr, only-pr, all.
         Value is not specified by default.
     :arg str discover-pr-origin: Discovers pull requests where the origin
