@@ -137,7 +137,8 @@ class BaseTestCase(testtools.TestCase):
         # Read XML content, assuming it is unicode encoded
         xml_content = ""
         for f in sorted(self.out_filenames):
-            xml_content += u"%s" % io.open(f, 'r', encoding='utf-8').read()
+            with io.open(f, 'r', encoding='utf-8') as xml_file:
+                xml_content += u"%s" % xml_file.read()
         return xml_content
 
     def _read_yaml_content(self, filename):
