@@ -26,7 +26,7 @@ from jenkins_jobs.local_yaml import CustomLoader
 logger = logging.getLogger(__name__)
 
 
-def deep_format(obj, paramdict, allow_empty=False, template=True):
+def deep_format(obj, paramdict, allow_empty=False):
     """Apply the paramdict via str.format() to all string objects found within
        the supplied obj. Lists and dicts are traversed recursively."""
     # YAML serialisation was originally used to achieve this, but that places
@@ -50,26 +50,13 @@ def deep_format(obj, paramdict, allow_empty=False, template=True):
     elif isinstance(obj, list):
         ret = type(obj)()
         for item in obj:
-            ret.append(deep_format(item, paramdict,
-                                   allow_empty=allow_empty,
-                                   template=template))
+            ret.append(deep_format(item, paramdict, allow_empty))
     elif isinstance(obj, dict):
         ret = type(obj)()
         for item in obj:
             try:
-                # deep_formatting dsl when not a job-template is not necessary
-                # as it will most likely result in keyerror due to trying
-                # to substitute values inside the dsl that do not exist.
-                if item not in ['dsl'] or template:
-                    ret[CustomFormatter(allow_empty).format(item,
-                                                            **paramdict)] = \
-                        deep_format(obj[item], paramdict,
-                                    allow_empty=allow_empty,
-                                    template=template)
-                else:
-                    ret[CustomFormatter(allow_empty).format(item,
-                                                            **paramdict)] = \
-                        obj[item]
+                ret[CustomFormatter(allow_empty).format(item, **paramdict)] = \
+                    deep_format(obj[item], paramdict, allow_empty)
             except KeyError as exc:
                 missing_key = exc.args[0]
                 desc = "%s parameter missing to format %s\nGiven:\n%s" % (
@@ -85,8 +72,7 @@ def deep_format(obj, paramdict, allow_empty=False, template=True):
     if isinstance(ret, CustomLoader):
         # If we have a CustomLoader here, we've lazily-loaded a template;
         # attempt to format it.
-        ret = deep_format(ret, paramdict, allow_empty=allow_empty,
-                          template=template)
+        ret = deep_format(ret, paramdict, allow_empty=allow_empty)
     return ret
 
 
