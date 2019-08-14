@@ -5,6 +5,7 @@
       <deleteDirs>false</deleteDirs>
       <cleanupParameter/>
       <externalDelete/>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
   </buildWrappers>
 </project>
