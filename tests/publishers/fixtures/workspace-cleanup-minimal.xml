@@ -5,6 +5,7 @@
       <deleteDirs>false</deleteDirs>
       <cleanupMatrixParent>false</cleanupMatrixParent>
       <externalDelete/>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
       <cleanWhenSuccess>true</cleanWhenSuccess>
       <cleanWhenUnstable>true</cleanWhenUnstable>
       <cleanWhenFailure>true</cleanWhenFailure>
