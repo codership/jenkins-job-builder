@@ -141,6 +141,9 @@ class JJBConfig(object):
         self._setup()
         self._handle_deprecated_hipchat_config()
 
+        if config_fp is not None:
+            config_fp.close()
+
     def _init_defaults(self):
         """ Initialize default configuration values using DEFAULT_CONF
         """
