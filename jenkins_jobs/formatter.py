@@ -59,9 +59,9 @@ def deep_format(obj, paramdict, allow_empty=False):
         ret = type(obj)()
         for item in obj:
             try:
-                ret[
-                    CustomFormatter(allow_empty).format(item, **paramdict)
-                ] = deep_format(obj[item], paramdict, allow_empty)
+                ret[deep_format(item, paramdict, allow_empty)] = deep_format(
+                    obj[item], paramdict, allow_empty
+                )
             except KeyError as exc:
                 missing_key = exc.args[0]
                 desc = "%s parameter missing to format %s\nGiven:\n%s" % (
