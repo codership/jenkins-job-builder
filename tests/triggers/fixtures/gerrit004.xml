@@ -54,6 +54,8 @@
           <excludeDrafts>true</excludeDrafts>
           <excludeTrivialRebase>true</excludeTrivialRebase>
           <excludeNoCodeChange>true</excludeNoCodeChange>
+          <excludePrivateState>true</excludePrivateState>
+          <excludeWipState>true</excludeWipState>
         </com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.events.PluginPatchsetCreatedEvent>
         <com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.events.PluginCommentAddedEvent>
           <verdictCategory>APRV</verdictCategory>

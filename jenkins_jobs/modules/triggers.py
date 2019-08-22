@@ -155,6 +155,8 @@ def build_gerrit_triggers(xml_parent, data):
         "patchset-uploaded-event": "PluginPatchsetCreatedEvent",
         "patchset-created-event": "PluginPatchsetCreatedEvent",
         "ref-updated-event": "PluginRefUpdatedEvent",
+        "private-state-changed-event": "PluginPrivateStateChangedEvent",
+        "wip-state-changed-event": "PluginWipStateChangedEvent",
     }
     tag_namespace = (
         "com.sonyericsson.hudson.plugins.gerrit.trigger." "hudsontrigger.events"
@@ -193,6 +195,8 @@ def build_gerrit_triggers(xml_parent, data):
                     ("exclude-drafts", "excludeDrafts", False),
                     ("exclude-trivial-rebase", "excludeTrivialRebase", False),
                     ("exclude-no-code-change", "excludeNoCodeChange", False),
+                    ("exclude-private", "excludePrivateState", False),
+                    ("exclude-wip", "excludeWipState", False),
                 ]
                 helpers.convert_mapping_to_xml(pc, pce, mapping, fail_required=True)
 
@@ -260,7 +264,13 @@ def gerrit(registry, xml_parent, data):
                  (default false)
                * **exclude-no-code-change** (`bool`) -- exclude no code change
                  (default false)
+               * **exclude-private** (`bool`) -- exclude private change
+                 (default false)
+               * **exclude-wip** (`bool`) -- exclude wip change
+                 (default false)
 
+           exclude-private|exclude-wip needs
+           Gerrit Trigger v2.29.0
            Exclude drafts|trivial-rebase|no-code-change needs
            Gerrit Trigger v2.12.0
 
@@ -276,6 +286,10 @@ def gerrit(registry, xml_parent, data):
            Gerrit Trigger Plugin version >= 2.8.0
          * **draft-published-event** -- Trigger on draft published event.
          * **ref-updated-event** -- Trigger on ref-updated.
+           Gerrit Trigger Plugin version >= 2.29.0
+         * **private-state-changed-event** -- Trigger on private state changed event.
+         * **wip-state-changed-event** -- Trigger on wip state changed event.
+           Gerrit Trigger Plugin version >= 2.8.0
          * **comment-added-event** (`dict`) -- Trigger on comment added.
 
            :Comment added:
