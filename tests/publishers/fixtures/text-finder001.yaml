@@ -5,3 +5,4 @@ publishers:
       also-check-console-output: true
       succeed-if-found: false
       unstable-if-found: false
+      not-built-if-found: false

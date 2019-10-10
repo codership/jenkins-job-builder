@@ -3973,7 +3973,8 @@ def text_finder(registry, xml_parent, data):
         Force a build to succeed if a string was found (default false)
     :arg bool unstable-if-found:
         Set build unstable instead of failing the build (default false)
-
+    :arg bool not-built-if-found:
+        Set build to "Not Built" instead of failing the build (default false)
 
     Example:
 
@@ -3990,6 +3991,7 @@ def text_finder(registry, xml_parent, data):
         ("also-check-console-output", "alsoCheckConsoleOutput", False),
         ("succeed-if-found", "succeedIfFound", False),
         ("unstable-if-found", "unstableIfFound", False),
+        ("not-built-if-found", "notBuiltIfFound", False),
     ]
     helpers.convert_mapping_to_xml(finder, data, mappings, fail_required=True)
 

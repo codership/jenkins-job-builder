@@ -7,6 +7,7 @@
       <alsoCheckConsoleOutput>true</alsoCheckConsoleOutput>
       <succeedIfFound>false</succeedIfFound>
       <unstableIfFound>false</unstableIfFound>
+      <notBuiltIfFound>false</notBuiltIfFound>
     </hudson.plugins.textfinder.TextFinderPublisher>
   </publishers>
 </project>
