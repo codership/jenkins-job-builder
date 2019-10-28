@@ -32,6 +32,7 @@ logger = logging.getLogger(__name__)
 
 class ModuleRegistry(object):
     _entry_points_cache = {}
+    _component_type_cache = {}
 
     def __init__(self, jjb_config, plugins_list=None):
         self.modules = []
@@ -128,6 +129,17 @@ class ModuleRegistry(object):
     def set_parser_data(self, parser_data):
         self.__parser_data = parser_data
 
+    def get_component_list_type(self, entry_point):
+        if entry_point in self._component_type_cache:
+            return self._component_type_cache[entry_point]
+
+        # pkg_resources.EntryPoint.load() is costly, cache it.
+        component_list_type = entry_point.load().component_list_type
+        logging.info("Caching type %s of %s", component_list_type, entry_point)
+        self._component_type_cache[entry_point] = component_list_type
+
+        return component_list_type
+
     def dispatch(self, component_type, xml_parent, component, template_data={}):
         """This is a method that you can call from your implementation of
         Base.gen_xml or component.  It allows modules to define a type
@@ -154,7 +166,7 @@ class ModuleRegistry(object):
             )
 
         entry_point = self.modules_by_component_type[component_type]
-        component_list_type = entry_point.load().component_list_type
+        component_list_type = self.get_component_list_type(entry_point)
 
         if isinstance(component, dict):
             # The component is a singleton dictionary of name: dict(args)
