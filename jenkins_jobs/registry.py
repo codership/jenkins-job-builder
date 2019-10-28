@@ -184,6 +184,7 @@ class ModuleRegistry(object):
         # Look for a component function defined in an entry point
         eps = self._entry_points_cache.get(component_list_type)
         if eps is None:
+            logging.debug("Caching entrypoints for %s" % component_list_type)
             module_eps = []
             # auto build entry points by inferring from base component_types
             mod = pkg_resources.EntryPoint(
@@ -245,7 +246,7 @@ class ModuleRegistry(object):
                         "name: '{1}'".format(component_type, name)
                     )
 
-                eps[module_ep.name] = module_ep
+                eps[module_ep.name] = module_ep.load()
 
             # cache both sets of entry points
             self._entry_points_cache[component_list_type] = eps
@@ -268,7 +269,7 @@ class ModuleRegistry(object):
                 # the arguments are interpolated into the real defn.
                 self.dispatch(component_type, xml_parent, b, component_data)
         elif name in eps:
-            func = eps[name].load()
+            func = eps[name]
             func(self, xml_parent, component_data)
         else:
             raise JenkinsJobsException(
