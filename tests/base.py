@@ -18,10 +18,12 @@
 # under the License.
 
 import doctest
+import configparser
 import io
 import json
 import logging
 import os
+import pkg_resources
 import re
 import xml.etree.ElementTree as XML
 
@@ -45,6 +47,7 @@ from jenkins_jobs.modules import project_multibranch
 from jenkins_jobs.modules import project_multijob
 from jenkins_jobs.modules import view_all
 from jenkins_jobs.modules import view_list
+from jenkins_jobs.modules import view_nested
 from jenkins_jobs.modules import view_pipeline
 from jenkins_jobs.parser import YamlParser
 from jenkins_jobs.registry import ModuleRegistry
@@ -169,7 +172,8 @@ class BaseScenariosTestCase(testscenarios.TestWithScenarios, BaseTestCase):
     scenarios = []
     fixtures_path = None
 
-    def test_yaml_snippet(self):
+    @mock.patch("pkg_resources.iter_entry_points")
+    def test_yaml_snippet(self, mock):
         if not self.in_filename:
             return
 
@@ -187,6 +191,24 @@ class BaseScenariosTestCase(testscenarios.TestWithScenarios, BaseTestCase):
             self.addDetail("plugins-info", text_content(str(plugins_info)))
 
         parser = YamlParser(jjb_config)
+        e = pkg_resources.EntryPoint.parse
+        d = pkg_resources.Distribution()
+        config = configparser.ConfigParser()
+        config.read(os.path.dirname(__file__) + "/../setup.cfg")
+        groups = {}
+        for key in config["entry_points"]:
+            groups[key] = list()
+            for line in config["entry_points"][key].split("\n"):
+                if "" == line.strip():
+                    continue
+                groups[key].append(e(line, dist=d))
+
+        def mock_iter_entry_points(group, name=None):
+            return (
+                entry for entry in groups[group] if name is None or name == entry.name
+            )
+
+        mock.side_effect = mock_iter_entry_points
         registry = ModuleRegistry(jjb_config, plugins_info)
         registry.set_parser_data(parser.data)
 
@@ -213,11 +235,13 @@ class BaseScenariosTestCase(testscenarios.TestWithScenarios, BaseTestCase):
 
         if "view-type" in yaml_content:
             if yaml_content["view-type"] == "all":
-                project = view_all.All(None)
+                project = view_all.All(registry)
             elif yaml_content["view-type"] == "list":
-                project = view_list.List(None)
+                project = view_list.List(registry)
+            elif yaml_content["view-type"] == "nested":
+                project = view_nested.Nested(registry)
             elif yaml_content["view-type"] == "pipeline":
-                project = view_pipeline.Pipeline(None)
+                project = view_pipeline.Pipeline(registry)
             else:
                 raise InvalidAttributeError("view-type", yaml_content["view-type"])
 
