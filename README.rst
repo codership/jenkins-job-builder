@@ -23,11 +23,11 @@ Bug report:
 
 Repository:
 
-* https://git.openstack.org/cgit/openstack-infra/jenkins-job-builder
+* https://opendev.org/jjb/jenkins-job-builder
 
 Cloning::
 
-    git clone https://git.openstack.org/openstack-infra/jenkins-job-builder
+    git clone https://opendev.org/jjb/jenkins-job-builder.git
 
 Install pre-commit from https://pre-commit.com/#intro in order to run some
 minimal testing on your commits.
@@ -41,7 +41,7 @@ Job Builder may be installed from the top level directory::
 
 Patches are submitted via Gerrit at:
 
-* https://review.openstack.org/
+* https://review.opendev.org
 
 Please do not submit GitHub pull requests, they will be automatically closed.
 
