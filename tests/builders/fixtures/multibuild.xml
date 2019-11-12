@@ -105,5 +105,30 @@
         </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
       </phaseJobs>
     </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+    <com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
+      <phaseName>PhaseFive</phaseName>
+      <continuationCondition>SUCCESSFUL</continuationCondition>
+      <executionType>PARALLEL</executionType>
+      <phaseJobs>
+        <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+          <jobName>PhaseFiveJobA</jobName>
+          <currParams>false</currParams>
+          <jobAlias>PhaseFiveJobRunA</jobAlias>
+          <configs/>
+          <abortAllJob>false</abortAllJob>
+          <aggregatedTestResults>false</aggregatedTestResults>
+          <enableRetryStrategy>false</enableRetryStrategy>
+        </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+        <com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+          <jobName>PhaseFiveJobA</jobName>
+          <currParams>false</currParams>
+          <jobAlias>PhaseFiveJobRunB</jobAlias>
+          <configs/>
+          <abortAllJob>false</abortAllJob>
+          <aggregatedTestResults>false</aggregatedTestResults>
+          <enableRetryStrategy>false</enableRetryStrategy>
+        </com.tikal.jenkins.plugins.multijob.PhaseJobsConfig>
+      </phaseJobs>
+    </com.tikal.jenkins.plugins.multijob.MultiJobBuilder>
   </builders>
 </project>

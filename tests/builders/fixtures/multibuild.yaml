@@ -43,3 +43,10 @@ builders:
           retry:
               max-retry: 3
               strategy-path: "/PhaseFour/PhaseFourRetry.prop"
+  - multijob:
+      name: PhaseFive
+      projects:
+        - name: PhaseFiveJobA
+          alias: PhaseFiveJobRunA
+        - name: PhaseFiveJobA
+          alias: PhaseFiveJobRunB
