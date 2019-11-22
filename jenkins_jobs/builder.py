@@ -216,7 +216,7 @@ class JenkinsManager(object):
                     self.delete_job(job["fullname"])
                     deleted_jobs += 1
                 else:
-                    logger.info(
+                    logger.debug(
                         "Not deleting unmanaged jenkins job %s", job["fullname"]
                     )
             else:
