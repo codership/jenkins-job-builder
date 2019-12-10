@@ -40,6 +40,6 @@ class TestCaseJobCache(base.BaseTestCase):
         """
         test_file = os.path.abspath(__file__)
         with mock.patch("os.path.join", return_value=test_file):
-            with mock.patch("yaml.load"):
+            with mock.patch("yaml.safe_load"):
                 with mock.patch("jenkins_jobs.builder.JobCache._lock"):
                     jenkins_jobs.builder.JobCache("dummy").data = None

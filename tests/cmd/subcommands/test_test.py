@@ -213,7 +213,7 @@ class TestTests(CmdTestsBase):
         self.execute_jenkins_jobs_with_args(args)
 
         with io.open(plugins_info_stub_yaml_file, "r", encoding="utf-8") as yaml_file:
-            plugins_info_list = yaml.load(yaml_file)
+            plugins_info_list = yaml.safe_load(yaml_file)
 
         registry_mock.assert_called_with(mock.ANY, plugins_info_list)
 

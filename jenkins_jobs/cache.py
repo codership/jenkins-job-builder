@@ -59,7 +59,7 @@ class JobCache(object):
             self.data = {}
         else:
             with io.open(self.cachefilename, "r", encoding="utf-8") as yfile:
-                self.data = yaml.load(yfile)
+                self.data = yaml.safe_load(yfile)
         logger.debug("Using cache: '{0}'".format(self.cachefilename))
 
     def _lock(self):
