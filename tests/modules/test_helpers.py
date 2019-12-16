@@ -31,7 +31,7 @@ class TestCaseTestHelpers(base.BaseTestCase):
 
         # Test default values
         default_root = XML.Element("testdefault")
-        default_data = yaml.load("string: hello")
+        default_data = yaml.safe_load("string: hello")
         default_mappings = [("default-string", "defaultString", "default")]
 
         convert_mapping_to_xml(
@@ -42,7 +42,7 @@ class TestCaseTestHelpers(base.BaseTestCase):
 
         # Test user input
         user_input_root = XML.Element("testUserInput")
-        user_input_data = yaml.load("user-input-string: hello")
+        user_input_data = yaml.safe_load("user-input-string: hello")
         user_input_mappings = [("user-input-string", "userInputString", "user-input")]
 
         convert_mapping_to_xml(
@@ -53,7 +53,7 @@ class TestCaseTestHelpers(base.BaseTestCase):
 
         # Test missing required input
         required_root = XML.Element("testrequired")
-        required_data = yaml.load("string: hello")
+        required_data = yaml.safe_load("string: hello")
         required_mappings = [("required-string", "requiredString", None)]
 
         self.assertRaises(
@@ -67,7 +67,7 @@ class TestCaseTestHelpers(base.BaseTestCase):
 
         # Test invalid user input for list
         user_input_root = XML.Element("testUserInput")
-        user_input_data = yaml.load("user-input-string: bye")
+        user_input_data = yaml.safe_load("user-input-string: bye")
         valid_inputs = ["hello"]
         user_input_mappings = [
             ("user-input-string", "userInputString", "user-input", valid_inputs)
@@ -83,7 +83,7 @@ class TestCaseTestHelpers(base.BaseTestCase):
 
         # Test invalid user input for dict
         user_input_root = XML.Element("testUserInput")
-        user_input_data = yaml.load("user-input-string: later")
+        user_input_data = yaml.safe_load("user-input-string: later")
         valid_inputs = {"hello": "world"}
         user_input_mappings = [
             ("user-input-string", "userInputString", "user-input", valid_inputs)
@@ -99,7 +99,7 @@ class TestCaseTestHelpers(base.BaseTestCase):
 
         # Test invalid key for dict
         user_input_root = XML.Element("testUserInput")
-        user_input_data = yaml.load("user-input-string: world")
+        user_input_data = yaml.safe_load("user-input-string: world")
         valid_inputs = {"hello": "world"}
         user_input_mappings = [
             ("user-input-string", "userInputString", "user-input", valid_inputs)

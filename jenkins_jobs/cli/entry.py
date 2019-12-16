@@ -101,7 +101,7 @@ class JenkinsJobs(object):
             with io.open(
                 self.options.plugins_info_path, "r", encoding="utf-8"
             ) as yaml_file:
-                plugins_info = yaml.load(yaml_file)
+                plugins_info = yaml.safe_load(yaml_file)
             if not isinstance(plugins_info, list):
                 self.parser.error(
                     "{0} must contain a Yaml list!".format(
