@@ -13,7 +13,7 @@ To install::
 
 Online documentation:
 
-* http://docs.openstack.org/infra/jenkins-job-builder/
+* https://jenkins-job-builder.readthedocs.io/en/latest/
 
 Developers
 ----------

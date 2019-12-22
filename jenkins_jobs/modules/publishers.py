@@ -7318,7 +7318,7 @@ def hipchat(registry, xml_parent, data):
     <Hipchat+Plugin>` version >=1.9
 
     Please see documentation for older plugin version
-    http://docs.openstack.org/infra/jenkins-job-builder/hipchat.html
+    https://jenkins-job-builder.readthedocs.io/en/latest/hipchat.html
 
     :arg str token: This will override the default auth token (optional)
     :arg list rooms: list of HipChat rooms to post messages to, overrides
