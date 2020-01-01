@@ -569,6 +569,13 @@ def gerrit_scm(xml_parent, data):
         (like to disable SCM triggering or to override the pipeline durability)
         (optional)
         Refer to :func:`~property_strategies <property_strategies>`.
+    :arg dict filter-checks: Enable the filtering by pending checks, allowing to
+        discover the changes that need validation only. This feature is using
+        the gerrit checks plugin.
+        (optional)
+        query-operator: Name of the query operator, supported values are:
+            'SCHEME' or 'ID'.
+        query-string: Value of the query operator.
 
     Minimal Example:
 
@@ -634,6 +641,20 @@ def gerrit_scm(xml_parent, data):
 
     if data.get("build-strategies", None):
         build_strategies(xml_parent, data)
+
+    # FilterChecks Trait
+    checks = data.get("filter-checks", None)
+    if checks:
+        checks_trait = XML.SubElement(
+            traits, "jenkins.plugins.gerrit.traits.FilterChecksTrait"
+        )
+        checks_source_mapping = [
+            ("query-operator", "queryOperator", None),
+            ("query-string", "queryString", None),
+        ]
+        helpers.convert_mapping_to_xml(
+            checks_trait, checks, checks_source_mapping, fail_required=True
+        )
 
 
 def git_scm(xml_parent, data):
