@@ -174,6 +174,7 @@ def archive(registry, xml_parent, data):
 def blame_upstream(registry, xml_parent, data):
     """yaml: blame-upstream
     Notify upstream committers when build fails
+
     Requires the Jenkins :jenkins-wiki:`Blame upstream committers Plugin
     <Blame+Upstream+Committers+Plugin>`.
 
@@ -1579,19 +1580,19 @@ def junit(registry, xml_parent, data):
         (default false)
     :arg bool test-stability: Add historical information about test
         results stability (default false).
-        Requires the Jenkins :jenkins-wiki:`Test stability Plugin
-        <Test+stability+plugin>`.
+        Requires the Jenkins :jenkins-plugins:`Test stability Plugin
+        <test-stability>`.
     :arg bool claim-build: Allow claiming of failed tests (default false)
-        Requires the Jenkins :jenkins-wiki:`Claim Plugin <Claim+plugin>`.
+        Requires the Jenkins :jenkins-plugins:`Claim Plugin <claim>`.
     :arg bool measurement-plots: Create measurement plots (default false)
         Requires the Jenkins :jenkins-wiki:`Measurement Plots Plugin
         <Measurement+Plots+Plugin>`.
     :arg bool flaky-test-reports: Publish flaky test reports (default false).
-        Requires the Jenkins :jenkins-wiki:`Flaky Test Handler Plugin
-        <Flaky+Test+Handler+Plugin>`.
+        Requires the Jenkins :jenkins-plugins:`Flaky Test Handler Plugin
+        <flaky-test-handler>`.
     :arg bool junit-attachments: Publish test attachments (default false).
-        Requires the Jenkins :jenkins-wiki:`JUnit Attachments Plugin
-        <JUnit+Attachments+Plugin>`.
+        Requires the Jenkins :jenkins-plugins:`JUnit Attachments Plugin
+        <junit-attachments>`.
 
 
     Minimal example using defaults:
@@ -2689,6 +2690,7 @@ def aggregate_tests(registry, xml_parent, data):
 def aggregate_flow_tests(registry, xml_parent, data):
     """yaml: aggregate-flow-tests
     Aggregate downstream test results in a Build Flow job.
+
     Requires the Jenkins :jenkins-wiki:`Build Flow Test Aggregator Plugin
     <Build+Flow+Test+Aggregator+Plugin>`.
 
@@ -2879,7 +2881,8 @@ def logparser(registry, xml_parent, data):
 
 def copy_to_master(registry, xml_parent, data):
     """yaml: copy-to-master
-    Copy files to master from slave
+    Copy files to master from slave.
+
     Requires the Jenkins :jenkins-wiki:`Copy To Slave Plugin
     <Copy+To+Slave+Plugin>`.
 
@@ -3220,8 +3223,8 @@ def sonar(registry, xml_parent, data):
         possible to provide a ConfigFileProvider settings file, see Example
         below. (optional)
 
-    Requires the Jenkins :jenkins-wiki:`Config File Provider Plugin
-    <Config+File+Provider+Plugin>`
+    Requires the Jenkins :jenkins-plugins:`Config File Provider Plugin
+    <config-file-provider>`
     for the Config File Provider "settings" and "global-settings" config.
 
     This publisher supports the post-build action exposed by the Jenkins
@@ -5667,7 +5670,7 @@ def sitemonitor(registry, xml_parent, data):
     """yaml: sitemonitor
     This plugin checks the availability of an url.
 
-    It requires the :jenkins-wiki:`sitemonitor plugin <SiteMonitor+Plugin>`.
+    It requires the :jenkins-plugins:`sitemonitor plugin <sitemonitor>`.
 
     :arg list sites: List of URLs to check
 
@@ -7085,8 +7088,8 @@ def flowdock(registry, xml_parent, data):
     """yaml: flowdock
     This plugin publishes job build results to a Flowdock flow.
 
-    Requires the Jenkins :jenkins-wiki:`Flowdock Plugin
-    <Flowdock+Plugin>`.
+    Requires the Jenkins :jenkins-plugins:`Flowdock Plugin
+    <jenkins-flowdock-plugin>`.
 
     :arg str token: API token for the targeted flow.
       (required)
