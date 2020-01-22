@@ -93,8 +93,8 @@ def shell(registry, xml_parent, data):
 
 def python(registry, xml_parent, data):
     """yaml: python
-    Execute a python command. Requires the Jenkins :jenkins-wiki:`Python plugin
-    <Python+Plugin>`.
+    Execute a python command. Requires the Jenkins :jenkins-plugins:`Python plugin
+    <python>`.
 
     :arg str parameter: the python command to execute
 
@@ -111,8 +111,8 @@ def python(registry, xml_parent, data):
 def copyartifact(registry, xml_parent, data):
     """yaml: copyartifact
 
-    Copy artifact from another project. Requires the :jenkins-wiki:`Copy
-    Artifact plugin <Copy+Artifact+Plugin>`.
+    Copy artifact from another project. Requires the :jenkins-plugins:`Copy
+    Artifact plugin <copyartifact>`.
 
     Please note using the multijob-build for which-build argument requires
     the :jenkins-plugins:`Multijob plugin <jenkins-multijob-plugin>`
@@ -206,8 +206,8 @@ def copyartifact(registry, xml_parent, data):
 def change_assembly_version(registry, xml_parent, data):
     """yaml: change-assembly-version
     Change the assembly version.
-    Requires the Jenkins :jenkins-wiki:`Change Assembly Version
-    <Change+Assembly+Version>`.
+    Requires the Jenkins :jenkins-plugins:`Change Assembly Version
+    <change-assembly-version-plugin>`.
 
     :arg str version: Set the new version number for replace (default 1.0.0)
     :arg str assemblyFile: The file name to search (default AssemblyInfo.cs)
@@ -239,8 +239,10 @@ def change_assembly_version(registry, xml_parent, data):
 def fingerprint(registry, xml_parent, data):
     """yaml: fingerprint
     Adds the ability to generate fingerprints as build steps instead of waiting
-    for a build to complete. Requires the Jenkins :jenkins-wiki:`Fingerprint
-    Plugin <Fingerprint+Plugin>`.
+    for a build to complete.
+
+    Requires the Jenkins :jenkins-plugins:`Fingerprint Plugin
+    <create-fingerprint>`.
 
     :arg str targets: Files to fingerprint (default '')
 
@@ -268,8 +270,8 @@ def fingerprint(registry, xml_parent, data):
 
 def ant(registry, xml_parent, data):
     """yaml: ant
-    Execute an ant target. Requires the Jenkins :jenkins-wiki:`Ant Plugin
-    <Ant+Plugin>`.
+    Execute an ant target. Requires the Jenkins :jenkins-plugins:`Ant Plugin
+    <ant>`.
 
     To setup this builder you can either reference the list of targets
     or use named parameters. Below is a description of both forms:
@@ -337,8 +339,8 @@ def trigger_remote(registry, xml_parent, data):
     """yaml: trigger-remote
     Trigger build of job on remote Jenkins instance.
 
-    :jenkins-wiki:`Parameterized Remote Trigger Plugin
-    <Parameterized+Remote+Trigger+Plugin>`
+    Requires the Jenkins :jenkins-plugins:`Parameterized Remote Trigger Plugin
+    <Parameterized-Remote-Trigger>`
 
     Please note that this plugin requires system configuration on the Jenkins
     Master that is unavailable from individual job views; specifically, one
@@ -420,8 +422,9 @@ def trigger_remote(registry, xml_parent, data):
 def trigger_builds(registry, xml_parent, data):
     """yaml: trigger-builds
     Trigger builds of other jobs.
-    Requires the Jenkins :jenkins-wiki:`Parameterized Trigger Plugin
-    <Parameterized+Trigger+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Parameterized Trigger Plugin
+    <parameterized-trigger>`.
 
     :arg list project: the Jenkins project to trigger
     :arg str predefined-parameters: key/value pairs to be passed to the job
@@ -798,8 +801,9 @@ def trigger_builds(registry, xml_parent, data):
 def builders_from(registry, xml_parent, data):
     """yaml: builders-from
     Use builders from another project.
-    Requires the Jenkins :jenkins-wiki:`Template Project Plugin
-    <Template+Project+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Template Project Plugin
+    <template-project>`.
 
     :arg str projectName: the name of the other project
 
@@ -816,8 +820,9 @@ def builders_from(registry, xml_parent, data):
 def http_request(registry, xml_parent, data):
     """yaml: http-request
     This plugin sends a http request to an url with some parameters.
-    Requires the Jenkins :jenkins-wiki:`HTTP Request Plugin
-    <HTTP+Request+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`HTTP Request Plugin
+    <http_request>`.
 
     :arg str url: Specify an URL to be requested (required)
     :arg str mode: The http mode of the request (default GET)
@@ -921,8 +926,8 @@ def http_request(registry, xml_parent, data):
 def inject(registry, xml_parent, data):
     """yaml: inject
     Inject an environment for the job.
-    Requires the Jenkins :jenkins-wiki:`EnvInject Plugin
-    <EnvInject+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`EnvInject Plugin <envinject>`.
 
     :arg str properties-file: the name of the property file (optional)
     :arg str properties-content: the properties content (optional)
@@ -948,8 +953,9 @@ def inject(registry, xml_parent, data):
 def kmap(registry, xml_parent, data):
     """yaml: kmap
     Publish mobile applications to your Keivox KMAP Private Mobile App Store.
-    Requires the Jenkins :jenkins-wiki:`Keivox KMAP Private Mobile App Store
-    Plugin <Keivox+KMAP+Private+Mobile+App+Store+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Keivox KMAP Private Mobile App Store
+    Plugin <kmap-jenkins>`.
 
     :arg str username: KMAP's user email with permissions to upload/publish
         applications to KMAP (required)
@@ -1022,8 +1028,9 @@ def artifact_resolver(registry, xml_parent, data):
     """yaml: artifact-resolver
     Allows one to resolve artifacts from a maven repository like nexus
     (without having maven installed)
-    Requires the Jenkins :jenkins-wiki:`Repository Connector Plugin
-    <Repository+Connector+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Repository Connector Plugin
+    <repository-connector>`.
 
     :arg bool fail-on-error: Whether to fail the build on error (default false)
     :arg bool repository-logging: Enable repository logging (default false)
@@ -1087,8 +1094,9 @@ def artifact_resolver(registry, xml_parent, data):
 
 def doxygen(registry, xml_parent, data):
     """yaml: doxygen
-    Builds doxygen HTML documentation. Requires the Jenkins
-    :jenkins-wiki:`Doxygen plugin <Doxygen+Plugin>`.
+    Builds doxygen HTML documentation.
+
+    Requires the Jenkins :jenkins-plugins:`Doxygen plugin <doxygen>`.
 
     :arg str doxyfile: The doxyfile path (required)
     :arg str install: The doxygen installation to use (required)
@@ -1115,8 +1123,9 @@ def doxygen(registry, xml_parent, data):
 
 def gradle(registry, xml_parent, data):
     """yaml: gradle
-    Execute gradle tasks. Requires the Jenkins :jenkins-wiki:`Gradle Plugin
-    <Gradle+Plugin>`.
+    Execute gradle tasks.
+
+    Requires the Jenkins :jenkins-plugins:`Gradle Plugin <gradle>`.
 
     :arg str tasks: List of tasks to execute
     :arg str gradle-name: Use a custom gradle name (default '')
@@ -1180,7 +1189,8 @@ def _groovy_common_scriptSource(data):
 def groovy(registry, xml_parent, data):
     """yaml: groovy
     Execute a groovy script or command.
-    Requires the Jenkins :jenkins-wiki:`Groovy Plugin <Groovy+plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Groovy Plugin <groovy>`.
 
     :arg str file: Groovy file to run. (Alternative: you can chose a command
         instead)
@@ -1229,7 +1239,8 @@ def groovy(registry, xml_parent, data):
 def system_groovy(registry, xml_parent, data):
     """yaml: system-groovy
     Execute a system groovy script or command.
-    Requires the Jenkins :jenkins-wiki:`Groovy Plugin <Groovy+plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Groovy Plugin <groovy>`.
 
     :arg str file: Groovy file to run. (Alternative: you can chose a command
         instead)
@@ -1274,8 +1285,9 @@ def batch(registry, xml_parent, data):
 
 def powershell(registry, xml_parent, data):
     """yaml: powershell
-    Execute a powershell command. Requires the :jenkins-wiki:`Powershell Plugin
-    <PowerShell+Plugin>`.
+    Execute a powershell command.
+
+    Requires the :jenkins-plugins:`Powershell Plugin <powershell>`.
 
     :Parameter: the powershell command to execute
 
@@ -1290,8 +1302,9 @@ def powershell(registry, xml_parent, data):
 
 def msbuild(registry, xml_parent, data):
     """yaml: msbuild
-    Build .NET project using msbuild. Requires the :jenkins-wiki:`Jenkins
-    MSBuild Plugin <MSBuild+Plugin>`.
+    Build .NET project using msbuild.
+
+    Requires the Jenkins :jenkins-plugins:'MSBuild Plugin <msbuild>`.
 
     :arg str msbuild-version: which msbuild configured in Jenkins to use
         (default '(Default)')
@@ -1336,9 +1349,10 @@ def create_builders(registry, step):
 
 def conditional_step(registry, xml_parent, data):
     """yaml: conditional-step
-    Conditionally execute some build steps. Requires the Jenkins
-    :jenkins-wiki:`Conditional BuildStep Plugin
-    <Conditional+BuildStep+Plugin>`.
+    Conditionally execute some build steps.
+
+    Requires the Jenkins :jenkins-plugins:`Conditional BuildStep Plugin
+    <conditional-buildstep>`.
 
     Depending on the number of declared steps, a `Conditional step (single)`
     or a `Conditional steps (multiple)` is created in Jenkins.
@@ -1831,8 +1845,8 @@ def jira_issue_updater(registry, xml_parent, data):
     """yaml: jenkins-jira-issue-updater
     Updates issues in Atlassian JIRA as part of a Jenkins job.
 
-    Requires the Jenkins :jenkins-wiki:`Jira Issue Updater Plugin
-    <Jira+Issue+Updater+Plugin>`.
+    Requires the Jenkins :jenkins-plugins:`Jira Issue Updater Plugin
+    <jenkins-jira-issue-updater>`.
 
     :arg str base-url: The base url of the rest API. (default '')
     :arg str username: The Jira username (required)
@@ -1887,8 +1901,8 @@ def maven_target(registry, xml_parent, data):
     """yaml: maven-target
     Execute top-level Maven targets.
 
-    Requires the Jenkins :jenkins-wiki:`Config File Provider Plugin
-    <Config+File+Provider+Plugin>` for the Config File Provider "settings"
+    Requires the Jenkins :jenkins-plugins:`Config File Provider Plugin
+    <config-file-provider>` for the Config File Provider "settings"
     and "global-settings" config.
 
     :arg str goals: Goals to execute
@@ -1939,8 +1953,10 @@ def maven_target(registry, xml_parent, data):
 
 def multijob(registry, xml_parent, data):
     """yaml: multijob
-    Define a multijob phase. Requires the Jenkins
-    :jenkins-plugins:`Multijob Plugin <jenkins-multijob-plugin>`.
+    Define a multijob phase.
+
+    Requires the Jenkins :jenkins-plugins:`Multijob Plugin
+    <jenkins-multijob-plugin>`.
 
     This builder may only be used in
     :py:class:`jenkins_jobs.modules.project_multijob.MultiJob` projects.
@@ -2139,8 +2155,9 @@ def config_file_provider(registry, xml_parent, data):
     """yaml: config-file-provider
     Provide configuration files (i.e., settings.xml for maven etc.)
     which will be copied to the job's workspace.
-    Requires the Jenkins :jenkins-wiki:`Config File Provider Plugin
-    <Config+File+Provider+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Config File Provider Plugin
+    <config-file-provider>`.
 
     :arg list files: List of managed config files made up of three
         parameters
@@ -2177,8 +2194,9 @@ def config_file_provider(registry, xml_parent, data):
 
 def grails(registry, xml_parent, data):
     """yaml: grails
-    Execute a grails build step. Requires the :jenkins-wiki:`Jenkins Grails
-    Plugin <Grails+Plugin>`.
+    Execute a grails build step.
+
+    Requires the :jenkins-wiki:`Jenkins Grails Plugin <Grails+Plugin>`.
 
     :arg bool use-wrapper: Use a grails wrapper (default false)
     :arg str name: Select a grails installation to use (default '(Default)')
@@ -2239,8 +2257,9 @@ def grails(registry, xml_parent, data):
 
 def sbt(registry, xml_parent, data):
     """yaml: sbt
-    Execute a sbt build step. Requires the Jenkins :jenkins-wiki:`Sbt Plugin
-    <sbt+plugin>`.
+    Execute a sbt build step.
+
+    Requires the Jenkins :jenkins-plugins:`Sbt Plugin <sbt>`.
 
     :arg str name: Select a sbt installation to use. If no name is
         provided, the first in the list of defined SBT builders will be
@@ -2276,7 +2295,7 @@ def critical_block_start(registry, xml_parent, data):
     Must also add a build wrapper (exclusion), specifying the resources that
     control the critical block. Otherwise, this will have no effect.
 
-    Requires Jenkins :jenkins-wiki:`Exclusion Plugin <Exclusion-Plugin>`.
+    Requires the Jenkins :jenkins-plugins:`Exclusion Plugin <Exclusion>`.
 
     Example:
 
@@ -2298,7 +2317,7 @@ def critical_block_end(registry, xml_parent, data):
     Must also add a build wrapper (exclusion), specifying the resources that
     control the critical block. Otherwise, this will have no effect.
 
-    Requires Jenkins :jenkins-wiki:`Exclusion Plugin <Exclusion-Plugin>`.
+    Requires the Jenkins :jenkins-plugins:`Exclusion Plugin <Exclusion>`.
 
     Example:
 
@@ -2315,8 +2334,9 @@ def critical_block_end(registry, xml_parent, data):
 def publish_over_ssh(registry, xml_parent, data):
     """yaml: publish-over-ssh
     Send files or execute commands over SSH.
-    Requires the Jenkins :jenkins-wiki:`Publish over SSH Plugin
-    <Publish+Over+SSH+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Publish over SSH Plugin
+    <publish-over-ssh>`.
 
     :arg str site: name of the ssh site
     :arg str target: destination directory
@@ -2344,8 +2364,9 @@ def publish_over_ssh(registry, xml_parent, data):
 def publish_over_cifs(registry, xml_parent, data):
     """yaml: publish-over-cifs
     Upload files via CIFS.
-    Requires the Jenkins :jenkins-wiki:`Publish over CIFS Plugin
-    <Publish+Over+CIFS+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Publish over CIFS Plugin
+    <publish-over-cifs>`.
 
     :arg str site: name of the ssh site
     :arg str target: destination directory
@@ -2372,8 +2393,9 @@ def publish_over_cifs(registry, xml_parent, data):
 def saltstack(parser, xml_parent, data):
     """yaml: saltstack
 
-    Send a message to Salt API. Requires the :jenkins-wiki:`saltstack plugin
-    <saltstack-plugin>`.
+    Send a message to Salt API.
+
+    Requires the Jenkins :jenkins-plugins:`saltstack plugin <saltstack>`.
 
     :arg str servername: Salt master server name (required)
     :arg str authtype: Authentication type ('pam' or 'ldap', default 'pam')
@@ -2545,8 +2567,10 @@ class Builders(jenkins_jobs.modules.base.Base):
 
 def shining_panda(registry, xml_parent, data):
     """yaml: shining-panda
-    Execute a command inside various python environments. Requires the Jenkins
-    :jenkins-wiki:`ShiningPanda plugin <ShiningPanda+Plugin>`.
+    Execute a command inside various python environments.
+
+    Requires the Jenkins :jenkins-plugins:`ShiningPanda plugin
+    <shiningpanda>`.
 
     :arg str build-environment: Building environment to set up (required).
 
@@ -2656,8 +2680,10 @@ def shining_panda(registry, xml_parent, data):
 
 def tox(registry, xml_parent, data):
     """yaml: tox
-    Use tox to build a multi-configuration project. Requires the Jenkins
-    :jenkins-wiki:`ShiningPanda plugin <ShiningPanda+Plugin>`.
+    Use tox to build a multi-configuration project.
+
+    Requires the Jenkins :jenkins-plugins:`ShiningPanda plugin
+    <shiningpanda>`.
 
     :arg str ini: The TOX configuration file path (default tox.ini)
     :arg bool recreate: If true, create a new environment each time (default
@@ -2682,8 +2708,10 @@ def tox(registry, xml_parent, data):
 def managed_script(registry, xml_parent, data):
     """yaml: managed-script
     This step allows you to reference and execute a centrally managed
-    script within your build. Requires the Jenkins
-    :jenkins-wiki:`Managed Script Plugin <Managed+Script+Plugin>`.
+    script within your build.
+
+    Requires the Jenkins :jenkins-plugins:`Managed Scripts Plugin
+    <managed-scripts>`.
 
     :arg str script-id: Id of script to execute (required)
     :arg str type: Type of managed file (default script)
@@ -2721,8 +2749,9 @@ def managed_script(registry, xml_parent, data):
 
 def cmake(registry, xml_parent, data):
     """yaml: cmake
-    Execute a CMake target. Requires the Jenkins :jenkins-wiki:`CMake Plugin
-    <CMake+Plugin>`.
+    Execute a CMake target.
+
+    Requires the Jenkins :jenkins-plugins:`CMake Plugin <cmakebuilder>`.
 
     This builder is compatible with both versions 2.x and 1.x of the
     plugin. When specifying paramenters from both versions only the ones from
@@ -2905,7 +2934,7 @@ def dsl(registry, xml_parent, data):
     r"""yaml: dsl
     Process Job DSL
 
-    Requires the Jenkins :jenkins-wiki:`Job DSL plugin <Job+DSL+Plugin>`.
+    Requires the Jenkins :jenkins-plugins:`Job DSL plugin <job-dsl>`.
 
     :arg str script-text: dsl script which is Groovy code (Required if targets
         is not specified)
@@ -2995,7 +3024,8 @@ def dsl(registry, xml_parent, data):
 def github_notifier(registry, xml_parent, data):
     """yaml: github-notifier
     Set pending build status on Github commit.
-    Requires the Jenkins :jenkins-wiki:`Github Plugin <GitHub+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Github Plugin <github>`.
 
     Example:
 
@@ -3013,8 +3043,8 @@ def scan_build(registry, xml_parent, data):
     The scan-build report has to be generated in the directory
     ``${WORKSPACE}/clangScanBuildReports`` for the publisher to find it.
 
-    Requires the Jenkins :jenkins-wiki:`Clang Scan-Build Plugin
-    <Clang+Scan-Build+Plugin>`.
+    Requires the Jenkins :jenkins-plugins:`Clang Scan-Build Plugin
+    <clang-scanbuild>`.
 
     :arg str target: Provide the exact name of the XCode target you wish to
         have compiled and analyzed (required)
@@ -3069,7 +3099,8 @@ def scan_build(registry, xml_parent, data):
 def ssh_builder(registry, xml_parent, data):
     """yaml: ssh-builder
     Executes command on remote host
-    Requires the Jenkins :jenkins-wiki:`SSH plugin <SSH+plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`SSH plugin <ssh>`.
 
     :arg str ssh-user-ip: user@ip:ssh_port of machine that was defined
         in jenkins according to SSH plugin instructions
@@ -3089,8 +3120,9 @@ def ssh_builder(registry, xml_parent, data):
 def sonar(registry, xml_parent, data):
     """yaml: sonar
     Invoke standalone Sonar analysis.
-    Requires the Jenkins `Sonar Plugin.
-    <https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins>`_
+
+    Requires the Jenkins `Sonar Plugin
+    <https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins>`_.
 
     :arg str sonar-name: Name of the Sonar installation.
     :arg str sonar-scanner: Name of the Sonar Scanner.
@@ -3125,8 +3157,9 @@ def sonar(registry, xml_parent, data):
 
 def xcode(registry, xml_parent, data):
     """yaml: xcode
-    This step allows you to execute an xcode build step. Requires the Jenkins
-    :jenkins-wiki:`Xcode Plugin <Xcode+Plugin>`.
+    This step allows you to execute an xcode build step.
+
+    Requires the Jenkins :jenkins-plugins:`Xcode Plugin <xcode-plugin>`.
 
     :arg str developer-profile: the jenkins credential id for a
         ios developer profile. (optional)
@@ -3349,8 +3382,10 @@ def sonatype_clm(registry, xml_parent, data):
 
 def beaker(registry, xml_parent, data):
     """yaml: beaker
-    Execute a beaker build step. Requires the Jenkins :jenkins-wiki:`Beaker
-    Builder Plugin <Beaker+Builder+Plugin>`.
+    Execute a beaker build step.
+
+    Requires the Jenkins :jenkins-plugins:`Beaker Builder Plugin
+    <beaker-builder>`.
 
     :arg str content: Run job from string
         (Alternative: you can choose a path instead)
@@ -3391,8 +3426,10 @@ def beaker(registry, xml_parent, data):
 def cloudformation(registry, xml_parent, data):
     """yaml: cloudformation
     Create cloudformation stacks before running a build and optionally
-    delete them at the end.  Requires the Jenkins :jenkins-wiki:`AWS
-    Cloudformation Plugin <AWS+Cloudformation+Plugin>`.
+    delete them at the end.
+
+    Requires the Jenkins :jenkins-plugins:`AWS Cloudformation Plugin
+    <jenkins-cloudformation-plugin>`.
 
     :arg list name: The names of the stacks to create (required)
     :arg str description: Description of the stack (optional)
@@ -3447,8 +3484,8 @@ def jms_messaging(registry, xml_parent, data):
         - ActiveMQ
         - FedMsg
 
-    Requires the Jenkins :jenkins-wiki:`JMS Messaging Plugin
-    Pipeline Plugin <JMS+Messaging+Plugin>`.
+    Requires the Jenkins :jenkins-plugins:`JMS Messaging Plugin Pipeline Plugin
+    <jms-messaging>`.
 
     :arg str override-topic: If you need to override the default topic.
         (default '')
@@ -3483,8 +3520,9 @@ def openshift_build_verify(registry, xml_parent, data):
     provided buildConfig key provided; once the list of builds are obtained,
     the state of the latest build is inspected for up to a minute to see if
     it has completed successfully.
-    Requires the Jenkins :jenkins-wiki:`OpenShift
-    Pipeline Plugin <OpenShift+Pipeline+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`OpenShift Pipeline Plugin
+    <openshift-pipeline>`.
 
     :arg str api-url: this would be the value you specify if you leverage the
         --server option on the OpenShift `oc` command.
@@ -3529,8 +3567,9 @@ def openshift_build_verify(registry, xml_parent, data):
 def openshift_builder(registry, xml_parent, data):
     r"""yaml: openshift-builder
     Perform builds in OpenShift for the job.
-    Requires the Jenkins :jenkins-wiki:`OpenShift
-    Pipeline Plugin <OpenShift+Pipeline+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`OpenShift Pipeline Plugin
+    <openshift-pipeline>`.
 
     :arg str api-url: this would be the value you specify if you leverage the
         --server option on the OpenShift `oc` command.
@@ -3588,8 +3627,9 @@ def openshift_creator(registry, xml_parent, data):
     this build step takes in the provided JSON or YAML text, and if it
     conforms to OpenShift schema, creates whichever
     OpenShift resources are specified.
-    Requires the Jenkins :jenkins-wiki:`OpenShift
-    Pipeline Plugin <OpenShift+Pipeline+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`OpenShift Pipeline Plugin
+    <openshift-pipeline>`.
 
     :arg str api-url: this would be the value you specify if you leverage the
         --server option on the OpenShift `oc` command.
@@ -3635,8 +3675,9 @@ def openshift_dep_verify(registry, xml_parent, data):
     Determines whether the expected set of DeploymentConfig's,
     ReplicationController's, and active replicas are present based on prior
     use of the scaler (2) and deployer (3) steps
-    Requires the Jenkins :jenkins-wiki:`OpenShift
-    Pipeline Plugin <OpenShift+Pipeline+Plugin>`._
+
+    Requires the Jenkins :jenkins-plugins:`OpenShift Pipeline Plugin
+    <openshift-pipeline>`.
 
     :arg str api-url: this would be the value you specify if you leverage the
         --server option on the OpenShift `oc` command.
@@ -3685,8 +3726,9 @@ def openshift_dep_verify(registry, xml_parent, data):
 def openshift_deployer(registry, xml_parent, data):
     r"""yaml: openshift-deployer
     Start a deployment in OpenShift for the job.
-    Requires the Jenkins :jenkins-wiki:`OpenShift
-    Pipeline Plugin <OpenShift+Pipeline+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`OpenShift Pipeline Plugin
+    <openshift-pipeline>`.
 
     :arg str api-url: this would be the value you specify if you leverage the
         --server option on the OpenShift `oc` command.
@@ -3732,8 +3774,9 @@ def openshift_img_tagger(registry, xml_parent, data):
     r"""yaml: openshift-img-tagger
     Performs the equivalent of an oc tag command invocation in order to
     manipulate tags for images in OpenShift ImageStream's
-    Requires the Jenkins :jenkins-wiki:`OpenShift
-    Pipeline Plugin <OpenShift+Pipeline+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`OpenShift Pipeline Plugin
+    <openshift-pipeline>`.
 
     :arg str api-url: this would be the value you specify if you leverage the
         --server option on the OpenShift `oc` command.
@@ -3782,8 +3825,9 @@ def openshift_img_tagger(registry, xml_parent, data):
 def openshift_scaler(registry, xml_parent, data):
     r"""yaml: openshift-scaler
     Scale deployments in OpenShift for the job.
-    Requires the Jenkins :jenkins-wiki:`OpenShift
-    Pipeline Plugin <OpenShift+Pipeline+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`OpenShift Pipeline Plugin
+    <openshift-pipeline>`.
 
     :arg str api-url: this would be the value you specify if you leverage the
         --server option on the OpenShift `oc` command.
@@ -3829,8 +3873,9 @@ def openshift_scaler(registry, xml_parent, data):
 def openshift_svc_verify(registry, xml_parent, data):
     r"""yaml: openshift-svc-verify
     Verify a service is up in OpenShift for the job.
-    Requires the Jenkins :jenkins-wiki:`OpenShift
-    Pipeline Plugin <OpenShift+Pipeline+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`OpenShift Pipeline Plugin
+    <openshift-pipeline>`.
 
     :arg str api-url: this would be the value you specify if you leverage the
         --server option on the OpenShift `oc` command.
@@ -3874,7 +3919,8 @@ def openshift_svc_verify(registry, xml_parent, data):
 def runscope(registry, xml_parent, data):
     """yaml: runscope
     Execute a Runscope test.
-    Requires the Jenkins :jenkins-wiki:`Runscope Plugin <Runscope+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Runscope Plugin <runscope>`.
 
     :arg str test-trigger-url: Trigger URL for test. (required)
     :arg str access-token: OAuth Personal Access token. (required)
@@ -3908,8 +3954,8 @@ def description_setter(registry, xml_parent, data):
     This plugin sets the description for each build,
     based upon a RegEx test of the build log file.
 
-    Requires the Jenkins :jenkins-wiki:`Description Setter Plugin
-    <Description+Setter+Plugin>`.
+    Requires the Jenkins :jenkins-plugins:`Description Setter Plugin
+    <description-setter>`.
 
     :arg str regexp: A RegEx which is used to scan the build log file
         (default '')
@@ -3933,8 +3979,11 @@ def description_setter(registry, xml_parent, data):
 
 def build_publish_docker_image(registry, xml_parent, data):
     """yaml: build-publish-docker-image
-    Requires the Jenkins :jenkins-wiki:`CloudBees Docker Build and
-    Publish plugin <CloudBees+Docker+Build+and+Publish+plugin>`.
+    Provides the ability to build projects with a Dockerfile and publish the
+    resultant tagged image (repo) to the docker registry.
+
+    Requires the Jenkins :jenkins-plugins:`CloudBees Docker Build and Publish
+    plugin <docker-build-publish>`.
 
     :arg str docker-registry-url: URL to the Docker registry you are
         using (default '')
@@ -3991,8 +4040,11 @@ def build_publish_docker_image(registry, xml_parent, data):
 
 def docker_build_publish(parse, xml_parent, data):
     """yaml: docker-build-publish
-    Requires the Jenkins :jenkins-wiki:`Docker build publish Plugin
-    <Docker+build+publish+Plugin>`.
+    Provides the ability to build projects with a Dockerfile, and publish the
+    resultant tagged image (repo) to the docker registry.
+
+    Requires the Jenkins :jenkins-plugins:`Docker build publish Plugin
+    <docker-build-publish>`.
 
     :arg str repo-name: Name of repository to push to.
     :arg str repo-tag: Tag for image. (default '')
@@ -4082,8 +4134,9 @@ def docker_pull_image(registry, xml_parent, data):
     """yaml: docker-pull-image
     Provides integration between Jenkins and Docker Hub, utilizing a
     Docker Hub hook to trigger one (or more) Jenkins job(s).
-    Requires the Jenkins :jenkins-wiki:`CloudBees Docker Hub Notification
-    <CloudBees+Docker+Hub+Notification>`.
+
+    Requires the Jenkins :jenkins-plugins:`CloudBees Docker Hub Notification
+    <dockerhub-notification>`.
 
     :arg str image: Image ID on DockerHub (default '')
     :arg str docker-registry-url: URL to the Docker registry
@@ -4124,8 +4177,9 @@ def build_name_setter(registry, xml_parent, data):
     """yaml: build-name-setter
     Define Build Name Setter options which allows your build name to be
     updated during the build process.
-    Requires the Jenkins :jenkins-wiki:`Build Name Setter Plugin
-    <Build+Name+Setter+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Build Name Setter Plugin
+    <build-name-setter>`.
 
     :arg str name: Filename to use for Build Name Setter, only used if
         file bool is true. (default 'version.txt')
@@ -4163,8 +4217,10 @@ def build_name_setter(registry, xml_parent, data):
 def nexus_artifact_uploader(registry, xml_parent, data):
     """yaml: nexus-artifact-uploader
     To upload result of a build as an artifact in Nexus without the need of
-    Maven. Requires the Jenkins :nexus-artifact-uploader:
-    `Nexus Artifact Uploader Plugin <Nexus+Artifact+Uploader>`.
+    Maven.
+
+    Requires the Jenkins :jenkins-plugins:`Nexus Artifact Uploader Plugin
+    <nexus-artifact-uploader>`.
 
     :arg str protocol: Protocol to use to connect to Nexus (default https)
     :arg str nexus_url: Nexus url (without protocol) (default '')
@@ -4221,8 +4277,9 @@ def nexus_iq_policy_evaluator(registry, xml_parent, data):
     """yaml: nexus-iq-policy-evaluator
     Integrates the Nexus Lifecycle into a Jenkins job.
     This function triggers 'Invokes Nexus Policy Evaluation'.
-    Requires the Jenkins :jenkins-wiki:`Nexus
-    Platform Plugin <Nexus+Platform+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Nexus Platform Plugin
+    <nexus-jenkins-plugin>`.
 
     :arg str stage: Controls the stage the policy evaluation will be
         run against on the Nexus IQ Server (required)
@@ -4316,8 +4373,9 @@ def nexus_repo_manager(registry, xml_parent, data):
     """yaml: nexus-repo-manager
     Allows for artifacts selected in Jenkins packages to be
     available in Nexus Repository Manager.
-    Requires the Jenkins :jenkins-wiki:`Nexus
-    Platform Plugin <Nexus+Platform+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Nexus Platform Plugin
+    <nexus-jenkins-plugin>`.
 
     :arg str instance-id: The ID of the Nexus Instance (required)
     :arg str repo-id: The ID of the Nexus Repository (required)
@@ -4343,7 +4401,8 @@ def nexus_repo_manager(registry, xml_parent, data):
 def ansible_playbook(parser, xml_parent, data):
     """yaml: ansible-playbook
     This plugin allows you to execute Ansible tasks as a job build step.
-    Requires the Jenkins :jenkins-wiki:`Ansible Plugin <Ansible+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`Ansible Plugin <ansible>`.
 
     :arg str playbook: Path to the ansible playbook file. The path can be
         absolute or relative to the job workspace. (required)
@@ -4501,7 +4560,8 @@ def ansible_playbook(parser, xml_parent, data):
 def nodejs(parser, xml_parent, data):
     """yaml: nodejs
     This plugin allows you to execute NodeJS scripts as a job build step.
-    Requires the Jenkins :jenkins-wiki:`NodeJS Plugin <NodeJS+Plugin>`.
+
+    Requires the Jenkins :jenkins-plugins:`NodeJS Plugin <nodejs>`.
 
     :arg str name: NodeJS installation name
     :arg str script: NodeJS script (required)
@@ -4537,8 +4597,9 @@ def nodejs(parser, xml_parent, data):
 
 def xunit(registry, xml_parent, data):
     """yaml: xunit
-    Process tests results. Requires the Jenkins :jenkins-wiki:`xUnit Plugin
-    <xUnit+Plugin>`.
+    Process tests results.
+
+    Requires the Jenkins :jenkins-plugins:`xUnit Plugin <xunit>`.
 
     :arg str thresholdmode: Whether thresholds represents an absolute number
         of tests or a percentage. Either 'number' or 'percent'. (default

@@ -59,8 +59,9 @@ Example:
     * **folder**:
       The folder attribute provides an alternative to using '<path>/<name>' as
       the job name to specify which Jenkins folder to upload the job to.
-      Requires the `CloudBees Folders Plugin.
-      <https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Folders+Plugin>`_
+
+      Requires the Jenkins :jenkins-plugins:`CloudBees Folders Plugin
+      <cloudbees-folder>`.
 
     * **child-workspace**:
       Path for a child custom workspace. Defaults to Jenkins default
