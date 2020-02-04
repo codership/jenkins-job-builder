@@ -1590,7 +1590,7 @@ def sauce_ondemand(registry, xml_parent, data):
         to your private network (default false)
     :arg str sauce-host: The name of the selenium host to be used.  For
         tests run using Sauce Connect, this should be localhost.
-        ondemand.saucelabs.com can also be used to conenct directly to
+        ondemand.saucelabs.com can also be used to connect directly to
         Sauce OnDemand,  The value of the host will be stored in the
         SAUCE_ONDEMAND_HOST environment variable.  (default '')
     :arg str sauce-port: The name of the Selenium Port to be used.  For

@@ -577,7 +577,7 @@ and replace them with the empty string instead.
 
    Refer to :ref:`default-values` for details on setting variable defaults.
 
-Variable Inheritence
+Variable Inheritance
 ^^^^^^^^^^^^^^^^^^^^
 
 It is possible in JJB to define defaults for variables at different levels such
@@ -624,7 +624,7 @@ When a project wants to use a job-template it can use override it as follows:
 This is the standard way that most folks use and it will set ``branch: master``
 for every job-template in the list. However sometimes we may want to provide an
 alternative value for a specific job in the list. In this case the more
-specific declaration takes precendence:
+specific declaration takes precedence:
 
 .. code-block:: yaml
 
