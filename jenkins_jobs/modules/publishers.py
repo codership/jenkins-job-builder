@@ -6547,6 +6547,12 @@ def conditional_publisher(registry, xml_parent, data):
         for edited_node in create_publishers(registry, action):
             if not use_publisher_list:
                 edited_node.set("class", edited_node.tag)
+                # sort attributes alphabetically
+                attrib = edited_node.attrib
+                if len(attrib) > 1:
+                    attribs = sorted(attrib.items())
+                    attrib.clear()
+                    attrib.update(attribs)
                 edited_node.tag = "publisher"
             parent.append(edited_node)
 
