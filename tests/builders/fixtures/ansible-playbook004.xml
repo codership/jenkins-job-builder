@@ -11,7 +11,8 @@
       <credentialsId/>
       <vaultCredentialsId/>
       <sudo>false</sudo>
-      <become>false</become>
+      <become>true</become>
+      <becomeUser>cloud-user</becomeUser>
       <forks>5</forks>
       <unbufferedOutput>true</unbufferedOutput>
       <colorizedOutput>false</colorizedOutput>
