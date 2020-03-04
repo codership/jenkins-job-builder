@@ -13,6 +13,7 @@
       <credentialsId/>
       <vaultCredentialsId/>
       <sudo>false</sudo>
+      <become>false</become>
       <forks>5</forks>
       <unbufferedOutput>true</unbufferedOutput>
       <colorizedOutput>false</colorizedOutput>

@@ -18,6 +18,7 @@ machine02.example.com
       <vaultCredentialsId>0421b950-487b-4749-aa69-d87425e14459</vaultCredentialsId>
       <sudo>true</sudo>
       <sudoUser>cloud-user</sudoUser>
+      <become>false</become>
       <forks>2</forks>
       <unbufferedOutput>false</unbufferedOutput>
       <colorizedOutput>true</colorizedOutput>
