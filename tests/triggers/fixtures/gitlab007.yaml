@@ -6,6 +6,7 @@ triggers:
       trigger-closed-merge-request: true
       ci-skip: true
       set-build-description: true
+      cancel-pending-builds-on-update: false
       add-note-merge-request: true
       add-vote-merge-request: true
       add-ci-message: true

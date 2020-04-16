@@ -14,6 +14,7 @@
       <ciSkip>false</ciSkip>
       <skipWorkInProgressMergeRequest>false</skipWorkInProgressMergeRequest>
       <setBuildDescription>false</setBuildDescription>
+      <cancelPendingBuildsOnUpdate>false</cancelPendingBuildsOnUpdate>
       <addNoteOnMergeRequest>false</addNoteOnMergeRequest>
       <addVoteOnMergeRequest>false</addVoteOnMergeRequest>
       <acceptMergeRequestOnSuccess>true</acceptMergeRequestOnSuccess>
