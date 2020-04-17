@@ -1268,6 +1268,8 @@ class Properties(jenkins_jobs.modules.base.Base):
                 if "project-type" in data:
                     if data["project-type"] == "folder":
                         prop["authorization"]["_use_folder_perms"] = True
+                    elif data["project-type"] == "multibranch":
+                        prop["authorization"]["_use_folder_perms"] = True
                     else:
                         prop["authorization"]["_use_folder_perms"] = "folder" in data
                 else:
