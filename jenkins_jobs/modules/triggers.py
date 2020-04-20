@@ -1410,6 +1410,8 @@ def gitlab(registry, xml_parent, data):
         (default true)
     :arg bool set-build-description: Set build description to build cause
         (eg. Merge request or Git Push) (default true)
+    :arg bool cancel-pending-builds-on-update: Cancel pending merge request
+        builds on update (default false)
     :arg bool add-note-merge-request: Add note with build status on
         merge requests (default true)
     :arg bool add-vote-merge-request: Vote added to note with build status
@@ -1521,6 +1523,7 @@ def gitlab(registry, xml_parent, data):
         ("ci-skip", "ciSkip", True),
         ("wip-skip", "skipWorkInProgressMergeRequest", True),
         ("set-build-description", "setBuildDescription", True),
+        ("cancel-pending-builds-on-update", "cancelPendingBuildsOnUpdate", False),
         ("add-note-merge-request", "addNoteOnMergeRequest", True),
         ("add-vote-merge-request", "addVoteOnMergeRequest", True),
         ("accept-merge-request-on-success", "acceptMergeRequestOnSuccess", False),
