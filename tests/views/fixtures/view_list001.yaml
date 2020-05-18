@@ -27,6 +27,7 @@ columns:
     - desc
     - policy-violations
     - member-graph-view
+    - built-on
     - extra-tests-total
     - extra-tests-failed
     - extra-tests-passed

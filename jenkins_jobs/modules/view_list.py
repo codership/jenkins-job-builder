@@ -247,6 +247,9 @@ COLUMN_DICT = {
     'plugin="sonatype-clm-ci"',
     "member-graph-view": "com.barchart.jenkins.cascade.GraphViewColumn "
     'plugin="maven-release-cascade"',
+    "built-on": [
+        ["org.jenkins.plugins.builton.BuiltOnColumn", {"plugin": "built-on-column"}]
+    ],
     "extra-tests-total": [
         ["jenkins.plugins.extracolumns.TestResultColumn", {"plugin": "extra-columns"}],
         "<testResultFormat>2</testResultFormat>",
