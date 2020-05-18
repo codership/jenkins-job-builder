@@ -33,6 +33,7 @@
     <jenkins.branch.DescriptionColumn/>
     <com.sonatype.insight.ci.hudson.QualityColumn plugin="sonatype-clm-ci"/>
     <com.barchart.jenkins.cascade.GraphViewColumn plugin="maven-release-cascade"/>
+    <org.jenkins.plugins.builton.BuiltOnColumn plugin="built-on-column"/>
     <jenkins.plugins.extracolumns.TestResultColumn plugin="extra-columns">
       <testResultFormat>2</testResultFormat>
     </jenkins.plugins.extracolumns.TestResultColumn>
