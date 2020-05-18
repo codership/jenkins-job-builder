@@ -239,6 +239,7 @@ COLUMN_DICT = {
     "find-bugs": "hudson.plugins.findbugs.FindBugsColumn",
     "jacoco": "hudson.plugins.jacococoveragecolumn.JaCoCoColumn",
     "git-branch": "hudson.plugins.git.GitBranchSpecifierColumn",
+    "favorite": "hudson.plugins.favorite.column.FavoriteColumn",
     "schedule-build": "org.jenkinsci.plugins.schedulebuild.ScheduleBuildButtonColumn",
     "priority-sorter": "jenkins.advancedqueue.PrioritySorterJobColumn",
     "build-filter": "hudson.views.BuildFilterColumn",

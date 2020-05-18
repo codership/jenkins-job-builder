@@ -26,6 +26,7 @@
     <hudson.plugins.findbugs.FindBugsColumn/>
     <hudson.plugins.jacococoveragecolumn.JaCoCoColumn/>
     <hudson.plugins.git.GitBranchSpecifierColumn/>
+    <hudson.plugins.favorite.column.FavoriteColumn/>
     <org.jenkinsci.plugins.schedulebuild.ScheduleBuildButtonColumn/>
     <jenkins.advancedqueue.PrioritySorterJobColumn/>
     <hudson.views.BuildFilterColumn/>

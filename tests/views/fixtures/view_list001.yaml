@@ -21,6 +21,7 @@ columns:
     - find-bugs
     - jacoco
     - git-branch
+    - favorite
     - schedule-build
     - priority-sorter
     - build-filter
