@@ -61,6 +61,8 @@ def string_param(registry, xml_parent, data):
     :arg str name: the name of the parameter
     :arg str default: the default value of the parameter (optional)
     :arg str description: a description of the parameter (optional)
+    :arg bool trim: strip whitespaces from the begnning and end
+        of the string (optional, default: false)
 
     Example::
 
@@ -69,10 +71,14 @@ def string_param(registry, xml_parent, data):
             name: FOO
             default: bar
             description: "A parameter named FOO, defaults to 'bar'."
+            trim: true
     """
-    base_param(
+    pdef = base_param(
         registry, xml_parent, data, True, "hudson.model.StringParameterDefinition"
     )
+
+    mapping = [("trim", "trim", False)]
+    helpers.convert_mapping_to_xml(pdef, data, mapping, fail_required=True)
 
 
 def promoted_param(registry, xml_parent, data):

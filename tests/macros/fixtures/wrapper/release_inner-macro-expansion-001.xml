@@ -21,6 +21,7 @@
           <name>RELEASE_BRANCH</name>
           <description>Git branch to release from.</description>
           <defaultValue/>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>FOO</name>

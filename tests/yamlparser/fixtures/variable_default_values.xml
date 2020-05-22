@@ -14,6 +14,7 @@
           <name>INT_DEFAULT</name>
           <description/>
           <defaultValue>0</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -39,6 +40,7 @@
           <name>INT_DEFAULT</name>
           <description/>
           <defaultValue>1</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
