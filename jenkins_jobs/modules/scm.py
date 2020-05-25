@@ -1679,8 +1679,14 @@ class SCM(jenkins_jobs.modules.base.Base):
     def gen_xml(self, xml_parent, data):
 
         # multibranch-pipeline scm implementation is incompatible with SCM
-        if data.get("project-type") in ["multibranch", "multibranch-defaults"]:
-            logging.debug("SCM Module skipped for multibranch project-type.")
+        if data.get("project-type") in [
+            "multibranch",
+            "multibranch-defaults",
+            "pipeline",
+        ]:
+            logging.debug(
+                "SCM Module skipped for %s project-type." % data.get("project-type")
+            )
             return
 
         scms_parent = XML.Element("scms")

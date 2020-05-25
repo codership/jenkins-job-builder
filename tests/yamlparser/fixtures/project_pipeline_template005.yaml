@@ -12,9 +12,7 @@
       scm:
         - project-scm
     sandbox: true
-    publishers:
-    - email:
-        recipients: '{mail-to}'
+    description: 'maintainer: {maintainer}'
 
 - job-template:
     name: '{name}-perf-tests'
@@ -23,17 +21,15 @@
       scm:
         - project-scm
     sandbox: false
-    publishers:
-    - email:
-        recipients: '{mail-to}'
+    description: 'maintainer: {maintainer}'
 
 - job-group:
     name: '{name}-tests'
     jobs:
       - '{name}-unit-tests':
-          mail-to: dev@example.org
+          maintainer: dev@example.org
       - '{name}-perf-tests':
-          mail-to: qa@example.org
+          maintainer: qa@example.org
 
 - project:
     name: project-name
