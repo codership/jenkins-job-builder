@@ -39,6 +39,8 @@ import jenkins_jobs.modules.base
 from jenkins_jobs.modules import hudson_model
 import jenkins_jobs.modules.helpers as helpers
 
+logger = logging.getLogger(__name__)
+
 
 def influx_db(registry, xml_parent, data):
     """yaml: influx-db
@@ -8187,6 +8189,10 @@ class Publishers(jenkins_jobs.modules.base.Base):
     component_list_type = "publishers"
 
     def gen_xml(self, xml_parent, data):
+        if data.get("project-type", "freestyle") == "pipeline":
+            logger.debug("Publishers skipped for Pipeline job")
+            return
+
         publishers = XML.SubElement(xml_parent, "publishers")
 
         for action in data.get("publishers", []):

@@ -144,23 +144,35 @@ class General(jenkins_jobs.modules.base.Base):
 
         if "display-name" in data:
             XML.SubElement(xml, "displayName").text = data["display-name"]
-        if data.get("block-downstream"):
-            XML.SubElement(xml, "blockBuildWhenDownstreamBuilding").text = "true"
-        else:
-            XML.SubElement(xml, "blockBuildWhenDownstreamBuilding").text = "false"
-        if data.get("block-upstream"):
-            XML.SubElement(xml, "blockBuildWhenUpstreamBuilding").text = "true"
-        else:
-            XML.SubElement(xml, "blockBuildWhenUpstreamBuilding").text = "false"
+        if data.get("project-type", "freestyle") != "pipeline":
+            if data.get("block-downstream"):
+                XML.SubElement(xml, "blockBuildWhenDownstreamBuilding").text = "true"
+            else:
+                XML.SubElement(xml, "blockBuildWhenDownstreamBuilding").text = "false"
+            if data.get("block-upstream"):
+                XML.SubElement(xml, "blockBuildWhenUpstreamBuilding").text = "true"
+            else:
+                XML.SubElement(xml, "blockBuildWhenUpstreamBuilding").text = "false"
         authtoken = data.get("auth-token", None)
         if authtoken is not None:
             XML.SubElement(xml, "authToken").text = authtoken
-        if data.get("concurrent"):
-            XML.SubElement(xml, "concurrentBuild").text = "true"
+        if data.get("project-type", "freestyle") != "pipeline":
+            if data.get("concurrent"):
+                XML.SubElement(xml, "concurrentBuild").text = "true"
+            else:
+                XML.SubElement(xml, "concurrentBuild").text = "false"
         else:
-            XML.SubElement(xml, "concurrentBuild").text = "false"
-        if "workspace" in data:
-            XML.SubElement(xml, "customWorkspace").text = str(data["workspace"])
+            if not data.get("concurrent"):
+                properties = xml.find("properties")
+                if properties is None:
+                    properties = XML.SubElement(xml, "properties")
+                XML.SubElement(
+                    properties,
+                    "org.jenkinsci.plugins.workflow.job.properties.DisableConcurrentBuildsJobProperty",
+                )
+        if data.get("project-type", "freestyle") != "pipeline":
+            if "workspace" in data:
+                XML.SubElement(xml, "customWorkspace").text = str(data["workspace"])
         if (xml.tag == "matrix-project") and ("child-workspace" in data):
             XML.SubElement(xml, "childCustomWorkspace").text = str(
                 data["child-workspace"]
@@ -168,11 +180,12 @@ class General(jenkins_jobs.modules.base.Base):
         if "quiet-period" in data:
             XML.SubElement(xml, "quietPeriod").text = str(data["quiet-period"])
         node = data.get("node", None)
-        if node:
-            XML.SubElement(xml, "assignedNode").text = node
-            XML.SubElement(xml, "canRoam").text = "false"
-        else:
-            XML.SubElement(xml, "canRoam").text = "true"
+        if data.get("project-type", "freestyle") != "pipeline":
+            if node:
+                XML.SubElement(xml, "assignedNode").text = node
+                XML.SubElement(xml, "canRoam").text = "false"
+            else:
+                XML.SubElement(xml, "canRoam").text = "true"
         if "retry-count" in data:
             XML.SubElement(xml, "scmCheckoutRetryCount").text = str(data["retry-count"])
 
