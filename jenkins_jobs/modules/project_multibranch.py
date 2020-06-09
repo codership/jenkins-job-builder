@@ -60,10 +60,18 @@ Plugins required:
       (default '-1, forever')
     * **script-path** (`str`): Path to Jenkinsfile, relative to workspace.
       (default 'Jenkinsfile')
+    * **script-id** (`str`): Script id from the global Jenkins script store
+      provided by the config-file provider plugin. Mutually exclusive with
+      **script-path** option.
+    * **sandbox** (`bool`): This option is strongly recommended if the
+      Jenkinsfile is using load to evaluate a groovy source file from an
+      SCM repository. Usable only with **script-id** option. (default 'false')
 
 Job examples:
 
-.. literalinclude:: /../../tests/multibranch/fixtures/multibranch_defaults.yaml
+.. literalinclude:: /../../tests/multibranch/fixtures/multibranch_defaults_id_mode.yaml
+
+.. literalinclude:: /../../tests/multibranch/fixtures/multibranch_defaults_path_mode.yaml
 
 .. literalinclude:: /../../tests/multibranch/fixtures/multi_scm_full.yaml
 
@@ -85,8 +93,39 @@ logger = logging.getLogger(str(__name__))
 class WorkflowMultiBranch(jenkins_jobs.modules.base.Base):
     sequence = 0
     multibranch_path = "org.jenkinsci.plugins.workflow.multibranch"
+    multibranch_defaults_path = "org.jenkinsci.pipeline.workflow.multibranch"
     jenkins_class = "".join([multibranch_path, ".WorkflowMultiBranchProject"])
-    jenkins_factory_class = "".join([multibranch_path, ".WorkflowBranchProjectFactory"])
+    jenkins_factory = {
+        "script_path": {
+            "class": "".join([multibranch_path, ".WorkflowBranchProjectFactory"])
+        },
+        "script_id": {
+            "class": "".join(
+                [
+                    multibranch_defaults_path,
+                    ".defaults.PipelineBranchDefaultsProjectFactory",
+                ]
+            ),
+            "plugin": "pipeline-multibranch-defaults",
+        },
+    }
+
+    @staticmethod
+    def _factory_opts_check(data):
+
+        sandbox = data.get("sandbox", None)
+        script_id = data.get("script-id", None)
+        script_path = data.get("script-path", None)
+
+        if script_id and script_path:
+            error_msg = "script-id and script-path are mutually exclusive options"
+            raise JenkinsJobsException(error_msg)
+        elif not script_id and sandbox:
+            error_msg = (
+                "Sandbox mode is applicable only for multibranch with defaults"
+                "project type used with script-id option"
+            )
+            raise JenkinsJobsException(error_msg)
 
     def root_xml(self, data):
         xml_parent = XML.Element(self.jenkins_class)
@@ -268,28 +307,50 @@ class WorkflowMultiBranch(jenkins_jobs.modules.base.Base):
         # Factory #
         ###########
 
-        factory = XML.SubElement(
-            xml_parent, "factory", {"class": self.jenkins_factory_class}
-        )
+        self._factory_opts_check(data)
+
+        if data.get("script-id"):
+            mode = "script_id"
+            fopts_map = (
+                ("script-id", "scriptId", None),
+                ("sandbox", "useSandbox", None),
+            )
+        else:
+            mode = "script_path"
+            fopts_map = (("script-path", "scriptPath", "Jenkinsfile"),)
+
+        factory = XML.SubElement(xml_parent, "factory", self.jenkins_factory[mode])
         XML.SubElement(
             factory, "owner", {"class": self.jenkins_class, "reference": "../.."}
         )
-        XML.SubElement(factory, "scriptPath").text = data.get(
-            "script-path", "Jenkinsfile"
-        )
+
+        # multibranch default
+
+        helpers.convert_mapping_to_xml(factory, data, fopts_map, fail_required=False)
 
         return xml_parent
 
 
 class WorkflowMultiBranchDefaults(WorkflowMultiBranch):
-    jenkins_class = (
-        "org.jenkinsci.plugins.pipeline.multibranch"
-        ".defaults.PipelineMultiBranchDefaultsProject"
+    multibranch_path = "org.jenkinsci.plugins.workflow.multibranch"
+    multibranch_defaults_path = "org.jenkinsci.plugins.pipeline.multibranch"
+    jenkins_class = "".join(
+        [multibranch_defaults_path, ".defaults.PipelineMultiBranchDefaultsProject"]
     )
-    jenkins_factory_class = (
-        "org.jenkinsci.plugins.pipeline.multibranch"
-        ".defaults.PipelineBranchDefaultsProjectFactory"
-    )
+    jenkins_factory = {
+        "script_path": {
+            "class": "".join([multibranch_path, ".WorkflowBranchProjectFactory"]),
+            "plugin": "workflow-multibranch",
+        },
+        "script_id": {
+            "class": "".join(
+                [
+                    multibranch_defaults_path,
+                    ".defaults.PipelineBranchDefaultsProjectFactory",
+                ]
+            )
+        },
+    }
 
 
 def bitbucket_scm(xml_parent, data):
