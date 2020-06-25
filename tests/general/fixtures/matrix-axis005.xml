@@ -3,7 +3,6 @@
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
     <runSequentially>false</runSequentially>
   </executionStrategy>
-  <combinationFilter/>
   <axes>
     <ca.silvermaplesolutions.jenkins.plugins.daxis.DynamicAxis>
       <name>config</name>

@@ -3,7 +3,6 @@
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
     <runSequentially>false</runSequentially>
   </executionStrategy>
-  <combinationFilter/>
   <axes>
     <hudson.matrix.TextAxis>
       <name>PLATFORM</name>
@@ -32,7 +31,6 @@
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
     <runSequentially>false</runSequentially>
   </executionStrategy>
-  <combinationFilter/>
   <axes>
     <hudson.matrix.TextAxis>
       <name>PLATFORM</name>
@@ -61,7 +59,6 @@
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
     <runSequentially>false</runSequentially>
   </executionStrategy>
-  <combinationFilter/>
   <axes>
     <hudson.matrix.TextAxis>
       <name>PLATFORM</name>
