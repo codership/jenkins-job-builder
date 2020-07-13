@@ -236,7 +236,7 @@ def naginator_opt_out(registry, xml_parent, data):
 
     Requires the Jenkins :jenkins-plugins:`Naginator Plugin <naginator>`.
 
-    :arg bool opt-out: enables the rebuild option (default False).
+    :arg bool opt-out: disables the rebuild option if True (default False).
 
     Example:
 
