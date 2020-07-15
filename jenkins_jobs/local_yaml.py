@@ -203,6 +203,7 @@ import io
 import logging
 import os
 import re
+import copy
 
 import jinja2
 import yaml
@@ -597,6 +598,11 @@ class LazyLoader(CustomLoader):
 
     def __repr__(self):
         return "%s %s" % (self._cls.yaml_tag, self._node.value)
+
+    def __deepcopy__(self, memodict={}):
+        return LazyLoader(
+            (copy.deepcopy(self._cls), self._loader, copy.deepcopy(self._node))
+        )
 
     def format(self, *args, **kwargs):
         node = yaml.ScalarNode(
