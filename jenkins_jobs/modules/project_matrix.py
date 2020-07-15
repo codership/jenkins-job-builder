@@ -162,9 +162,10 @@ class Matrix(jenkins_jobs.modules.base.Base):
         strategy = data.get(strategy_name, {})
 
         if strategy_name == "execution-strategy":
-            XML.SubElement(root, "combinationFilter").text = str(
-                strategy.get("combination-filter", "")
-            ).rstrip()
+            if "combination-filter" in strategy:
+                XML.SubElement(root, "combinationFilter").text = str(
+                    strategy.get("combination-filter", "")
+                ).rstrip()
             XML.SubElement(ex_r, "runSequentially").text = str(
                 strategy.get("sequential", False)
             ).lower()

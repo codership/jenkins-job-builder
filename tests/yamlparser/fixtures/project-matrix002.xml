@@ -9,7 +9,6 @@
       <color>BLUE</color>
     </touchStoneResultCondition>
   </executionStrategy>
-  <combinationFilter/>
   <axes/>
   <actions/>
   <description>&lt;!-- Managed by Jenkins Job Builder --&gt;</description>

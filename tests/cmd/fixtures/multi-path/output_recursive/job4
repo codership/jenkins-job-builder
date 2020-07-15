@@ -3,7 +3,6 @@
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
     <runSequentially>false</runSequentially>
   </executionStrategy>
-  <combinationFilter/>
   <axes/>
   <actions/>
   <description>&lt;!-- Managed by Jenkins Job Builder --&gt;</description>

@@ -3,7 +3,6 @@
   <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
     <runSequentially>false</runSequentially>
   </executionStrategy>
-  <combinationFilter/>
   <axes>
     <org.jenkinsci.plugins.yamlaxis.YamlAxis>
       <name>python</name>
