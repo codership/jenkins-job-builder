@@ -608,20 +608,12 @@ def trigger(registry, xml_parent, data):
     tconfig = XML.SubElement(xml_parent, "hudson.tasks.BuildTrigger")
     childProjects = XML.SubElement(tconfig, "childProjects")
     childProjects.text = data["project"]
-    tthreshold = XML.SubElement(tconfig, "threshold")
 
     threshold = data.get("threshold", "SUCCESS")
     supported_thresholds = ["SUCCESS", "UNSTABLE", "FAILURE"]
-    if threshold not in supported_thresholds:
-        raise JenkinsJobsException(
-            "threshold must be one of %s" % ", ".join(supported_thresholds)
-        )
-    tname = XML.SubElement(tthreshold, "name")
-    tname.text = hudson_model.THRESHOLDS[threshold]["name"]
-    tordinal = XML.SubElement(tthreshold, "ordinal")
-    tordinal.text = hudson_model.THRESHOLDS[threshold]["ordinal"]
-    tcolor = XML.SubElement(tthreshold, "color")
-    tcolor.text = hudson_model.THRESHOLDS[threshold]["color"]
+    helpers.trigger_threshold(
+        tconfig, "threshold", threshold, supported_thresholds=supported_thresholds
+    )
 
 
 def clone_workspace(registry, xml_parent, data):
