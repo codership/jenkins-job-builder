@@ -19,10 +19,15 @@ triggers:
       build-desc-template: "build description"
       trigger-phrase: 'retest this please'
       skip-build-phrase: 'no tests'
+      black-list-commit-author:
+        - blacklist
+        - commit
+        - author
       only-trigger-phrase: true
       github-hooks: true
       permit-all: true
       auto-close-on-fail: false
+      display-build-errors-on-downstream-builds: true
       allow-whitelist-orgs-as-admins: true
       white-list-target-branches:
         - master
@@ -35,7 +40,7 @@ triggers:
       triggered-status: "triggered status message"
       started-status: "started"
       status-url: "url/to/status"
-      status-add-test-results: "test result with status message"
+      status-add-test-results: false
       success-status: "success message"
       failure-status: "failure message"
       error-status: "error message"
@@ -43,6 +48,8 @@ triggers:
       failure-comment: "failure comment"
       error-comment: "error-comment"
       cancel-builds-on-update: true
+      comment-file: "/tmp/path"
+      no-commit-status: true
       included-regions:
           - include
           - region

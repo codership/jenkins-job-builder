@@ -2,12 +2,16 @@
 <project>
   <triggers class="vector">
     <org.jenkinsci.plugins.ghprb.GhprbTrigger>
+      <configVersion>3</configVersion>
+      <spec>* * * * *</spec>
+      <cron>* * * * *</cron>
       <adminlist>user1
 user2</adminlist>
       <whitelist>user3
 user4</whitelist>
       <orgslist>org1
 org2</orgslist>
+      <blackListCommitAuthor>blacklist commit author</blackListCommitAuthor>
       <whiteListLabels>label1
 label2</whiteListLabels>
       <blackListLabels>label3
@@ -17,15 +21,14 @@ region</excludedRegions>
       <includedRegions>include
 region</includedRegions>
       <buildDescTemplate>build description</buildDescTemplate>
-      <spec>* * * * *</spec>
       <allowMembersOfWhitelistedOrgsAsAdmin>true</allowMembersOfWhitelistedOrgsAsAdmin>
-      <cron>* * * * *</cron>
       <triggerPhrase>retest this please</triggerPhrase>
       <skipBuildPhrase>no tests</skipBuildPhrase>
       <onlyTriggerPhrase>true</onlyTriggerPhrase>
       <useGitHubHooks>true</useGitHubHooks>
       <permitAll>true</permitAll>
       <autoCloseFailedPullRequests>false</autoCloseFailedPullRequests>
+      <displayBuildErrorsOnDownstreamBuilds>true</displayBuildErrorsOnDownstreamBuilds>
       <whiteListTargetBranches>
         <org.jenkinsci.plugins.ghprb.GhprbBranch>
           <branch>master</branch>
@@ -49,7 +52,7 @@ region</includedRegions>
           <triggeredStatus>triggered status message</triggeredStatus>
           <startedStatus>started</startedStatus>
           <statusUrl>url/to/status</statusUrl>
-          <addTestResults>test result with status message</addTestResults>
+          <addTestResults>false</addTestResults>
           <completedStatus>
             <org.jenkinsci.plugins.ghprb.extensions.comments.GhprbBuildResultMessage>
               <message>success message</message>
@@ -82,6 +85,10 @@ region</includedRegions>
           </messages>
         </org.jenkinsci.plugins.ghprb.extensions.comments.GhprbBuildStatus>
         <org.jenkinsci.plugins.ghprb.extensions.build.GhprbCancelBuildsOnUpdate/>
+        <org.jenkinsci.plugins.ghprb.extensions.comments.GhprbCommentFile>
+          <commentFilePath>/tmp/path</commentFilePath>
+        </org.jenkinsci.plugins.ghprb.extensions.comments.GhprbCommentFile>
+        <org.jenkinsci.plugins.ghprb.extensions.status.GhprbNoCommitStatus/>
       </extensions>
     </org.jenkinsci.plugins.ghprb.GhprbTrigger>
   </triggers>
