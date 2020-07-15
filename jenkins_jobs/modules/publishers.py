@@ -3496,6 +3496,8 @@ def join_trigger(registry, xml_parent, data):
     :arg list projects: list of projects to trigger
     :arg list publishers: list of triggers from publishers module that
         defines projects that need to be triggered
+    :arg str threshold: result threshold to trigger jobs (optional).
+        Valid values are "success", "unstable", "failure", and "aborted".
     :arg bool even-if-unstable: if true jobs will trigger even if some
         downstream jobs are marked as unstable (default false) (DEPRECATED)
 
@@ -3518,6 +3520,10 @@ def join_trigger(registry, xml_parent, data):
     unstable = str(data.get("even-if-unstable", "")).lower()
     if unstable:
         XML.SubElement(jointrigger, "evenIfDownstreamUnstable").text = unstable
+
+    threshold = data.get("threshold", "")
+    if threshold:
+        helpers.trigger_threshold(jointrigger, "resultThreshold", threshold)
 
 
 def jabber(registry, xml_parent, data):
