@@ -1,4 +1,5 @@
 # Copyright 2012 Hewlett-Packard Development Company, L.P.
+# Copyright 2020 Liberty Global B.V.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -518,9 +519,6 @@ def authorization(registry, xml_parent, data):
        :language: yaml
     """
 
-    # get the folder name if it exists
-    in_a_folder = data.pop("_use_folder_perms", None) if data else None
-
     # check if it's a folder or a job
     is_a_folder = data.pop("_is_a_folder", None) if data else False
 
@@ -551,23 +549,18 @@ def authorization(registry, xml_parent, data):
     }
 
     if data:
-        if in_a_folder:
-            if is_a_folder:
-                element_name = "com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty"
-            else:
-                element_name = "hudson.security.AuthorizationMatrixProperty"
-            matrix = XML.SubElement(xml_parent, element_name)
-            XML.SubElement(
-                matrix,
-                "inheritanceStrategy",
-                {
-                    "class": "org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"
-                },
-            )
+        if is_a_folder:
+            element_name = "com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty"
         else:
-            matrix = XML.SubElement(
-                xml_parent, "hudson.security.AuthorizationMatrixProperty"
-            )
+            element_name = "hudson.security.AuthorizationMatrixProperty"
+        matrix = XML.SubElement(xml_parent, element_name)
+        XML.SubElement(
+            matrix,
+            "inheritanceStrategy",
+            {
+                "class": "org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"
+            },
+        )
 
         for (username, perms) in data.items():
             for perm in perms:
@@ -1271,13 +1264,10 @@ class Properties(jenkins_jobs.modules.base.Base):
                 # Only projects are placed in folders
                 if "project-type" in data:
                     if data["project-type"] in ("folder", "multibranch"):
-                        prop["authorization"]["_use_folder_perms"] = True
                         prop["authorization"]["_is_a_folder"] = True
                     else:
-                        prop["authorization"]["_use_folder_perms"] = "folder" in data
                         prop["authorization"]["_is_a_folder"] = False
                 else:
-                    prop["authorization"]["_use_folder_perms"] = False
                     prop["authorization"]["_is_a_folder"] = False
 
             self.registry.dispatch("property", properties, prop)

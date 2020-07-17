@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder">
-  <icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/>
-  <views/>
-  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
-  <primaryView>All</primaryView>
-  <healthMetrics/>
+<project>
   <actions/>
   <description>&lt;!-- Managed by Jenkins Job Builder --&gt;</description>
   <keepDependencies>false</keepDependencies>
@@ -19,6 +14,7 @@
     </hudson.security.AuthorizationMatrixProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
+  <builders/>
   <publishers/>
   <buildWrappers/>
-</com.cloudbees.hudson.plugins.folder.Folder>
+</project>

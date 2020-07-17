@@ -2,6 +2,7 @@
 <project>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
+      <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
       <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create:admin</permission>
       <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete:admin</permission>
       <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:admin</permission>

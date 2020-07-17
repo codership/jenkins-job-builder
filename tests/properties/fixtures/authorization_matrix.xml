@@ -2,6 +2,7 @@
 <project>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
+      <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
       <permission>hudson.model.Item.Delete:admin</permission>
       <permission>hudson.model.Item.Configure:admin</permission>
       <permission>hudson.model.Item.Read:admin</permission>
