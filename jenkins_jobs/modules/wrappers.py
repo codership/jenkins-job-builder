@@ -1060,17 +1060,28 @@ def build_name(registry, xml_parent, data):
     :arg str name: Name for the build.  Typically you would use a variable
                    from Jenkins in the name.  The syntax would be ${FOO} for
                    the FOO variable.
+    :arg str description: Build description for the build (Optional).
+    :arg str run-at-start: Set build name before build starts (Optional, default: True).
+    :arg str run-at-end: Set build name after build ends (Optional, default: True).
 
     Example::
 
       wrappers:
         - build-name:
             name: Build-${FOO}
+            description: lorem ipsum dolor
+            run-at-start: true
+            run-at-end: false
     """
     bsetter = XML.SubElement(
         xml_parent, "org.jenkinsci.plugins.buildnamesetter." "BuildNameSetter"
     )
-    mapping = [("name", "template", None)]
+    mapping = [
+        ("name", "template", None),
+        ("description", "descriptionTemplate", ""),
+        ("run-at-start", "runAtStart", True),
+        ("run-at-end", "runAtEnd", True),
+    ]
     helpers.convert_mapping_to_xml(bsetter, data, mapping, fail_required=True)
 
 
