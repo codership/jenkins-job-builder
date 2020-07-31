@@ -11,6 +11,7 @@
             <hudson.plugins.parameterizedtrigger.FileBuildParameters>
               <propertiesFile>version.prop</propertiesFile>
               <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
@@ -28,6 +29,7 @@
             <hudson.plugins.parameterizedtrigger.FileBuildParameters>
               <propertiesFile>version.prop</propertiesFile>
               <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
           <projects>yet_another_job</projects>

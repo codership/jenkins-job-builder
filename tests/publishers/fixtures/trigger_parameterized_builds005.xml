@@ -8,6 +8,7 @@
             <hudson.plugins.parameterizedtrigger.FileBuildParameters>
               <propertiesFile>version.prop</propertiesFile>
               <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
               <useMatrixChild>true</useMatrixChild>
               <combinationFilter>FOO &amp;&amp; BAR</combinationFilter>
               <onlyExactRuns>true</onlyExactRuns>

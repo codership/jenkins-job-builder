@@ -527,6 +527,12 @@ def trigger_parameterized_builds(registry, xml_parent, data):
         if any of the property files are not found in the workspace.
         Only valid when 'property-file' is specified.
         (default 'False')
+    :arg bool property-multiline: When enabled properties containing
+        newline character(s) are propagated as TextParameterValue which is
+        a specialized StringParameterValue commonly used for handling
+        multi-line strings in Jenkins. When disabled (default)
+        all properties are propagated as StringParameterValue. (default
+        'False') (>=2.35.2)
     :arg bool trigger-from-child-projects: Trigger build from child projects.
         Used for matrix projects. (default 'False')
     :arg bool use-matrix-child-files: Use files in workspaces of child
@@ -568,7 +574,7 @@ def trigger_parameterized_builds(registry, xml_parent, data):
         tconfig = XML.SubElement(configs, pt_prefix + "BuildTriggerConfig")
         tconfigs = XML.SubElement(tconfig, "configs")
 
-        helpers.trigger_project(tconfigs, project_def, param_order)
+        helpers.trigger_project(tconfigs, project_def, registry, param_order)
 
         if not list(tconfigs):
             # no child parameter tags added
@@ -2387,7 +2393,7 @@ def pipeline(registry, xml_parent, data):
 
         configs = XML.SubElement(pippub, "configs")
 
-        helpers.trigger_project(configs, data, param_order)
+        helpers.trigger_project(configs, data, registry, param_order)
 
         XML.SubElement(pippub, "downstreamProjectNames").text = projects
 

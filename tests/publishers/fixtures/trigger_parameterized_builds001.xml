@@ -27,6 +27,7 @@ bar=foo
             <hudson.plugins.parameterizedtrigger.FileBuildParameters>
               <propertiesFile>version.prop</propertiesFile>
               <failTriggerOnMissing>true</failTriggerOnMissing>
+              <textParamValueOnNewLine>true</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
           <projects>other_job1, other_job2</projects>

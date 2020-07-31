@@ -12,6 +12,7 @@ publishers:
       git-revision: true
       property-file: version.prop
       fail-on-missing: true
+      property-multiline: true
     - project: yet_another_job
       predefined-parameters: foo=bar
       git-revision:
