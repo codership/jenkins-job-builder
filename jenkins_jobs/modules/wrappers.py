@@ -275,8 +275,13 @@ def timeout(registry, xml_parent, data):
 
     :arg bool fail: Mark the build as failed (default false)
     :arg bool abort: Mark the build as aborted (default false)
+    :arg bool abort-and-restart: Mark the build as aborted, then restart.
+        Count of restarts can be set via `max-restarts`
+        (default false) (Version >= 1.17).
     :arg bool write-description: Write a message in the description
         (default false)
+    :arg int max-restarts: Count of maximum restarts.
+        0 means without a limit (default 0) (Version >= 1.17).
     :arg int timeout: Abort the build after this number of minutes (default 3)
     :arg str timeout-var: Export an environment variable to reference the
         timeout value (optional)
@@ -430,9 +435,13 @@ def timeout(registry, xml_parent, data):
                 strategy_element, data, mapping, fail_required=True
             )
 
+        all_actions = ["fail", "abort"]
         actions = []
 
-        for action in ["fail", "abort"]:
+        if version is not None and version >= pkg_resources.parse_version("1.17"):
+            all_actions.append("abort-and-restart")
+
+        for action in all_actions:
             if str(data.get(action, "false")).lower() == "true":
                 actions.append(action)
 
@@ -444,6 +453,8 @@ def timeout(registry, xml_parent, data):
         if description is not None:
             actions.append("write-description")
 
+        max_restarts = data.get("max-restarts", "0")
+
         operation_list = XML.SubElement(twrapper, "operationList")
 
         for action in actions:
@@ -452,6 +463,11 @@ def timeout(registry, xml_parent, data):
                 XML.SubElement(operation_list, fmt_str.format("Abort"))
             elif action == "fail":
                 XML.SubElement(operation_list, fmt_str.format("Fail"))
+            elif action == "abort-and-restart":
+                abort_restart = XML.SubElement(
+                    operation_list, fmt_str.format("AbortAndRestart")
+                )
+                XML.SubElement(abort_restart, "maxRestarts").text = str(max_restarts)
             elif action == "write-description":
                 write_description = XML.SubElement(
                     operation_list, fmt_str.format("WriteDescription")
