@@ -98,8 +98,9 @@ class HipChat(jenkins_jobs.modules.base.Base):
 
     def _load_global_data(self):
         """Load data from the global config object.
-           This is done lazily to avoid looking up the '[hipchat]' section
-           unless actually required.
+
+        This is done lazily to avoid looking up the '[hipchat]' section
+        unless actually required.
         """
         jjb_config = self.registry.jjb_config
         if not self.authToken:

@@ -27,8 +27,11 @@ logger = logging.getLogger(__name__)
 
 
 def deep_format(obj, paramdict, allow_empty=False):
-    """Apply the paramdict via str.format() to all string objects found within
-       the supplied obj. Lists and dicts are traversed recursively."""
+    """Deep format configuration.
+
+    Apply the paramdict via str.format() to all string objects found within
+    the supplied obj. Lists and dicts are traversed recursively.
+    """
     # YAML serialisation was originally used to achieve this, but that places
     # limitations on the values in paramdict - the post-format result must
     # still be valid YAML (so substituting-in a string containing quotes, for

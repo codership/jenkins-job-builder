@@ -35,7 +35,8 @@ def __version__():
 
 
 class JenkinsJobs(object):
-    """ This is the entry point class for the `jenkins-jobs` command line tool.
+    """This is the entry point class for the `jenkins-jobs` command line tool.
+
     While this class can be used programmatically by external users of the JJB
     API, the main goal here is to abstract the `jenkins_jobs` tool in a way
     that prevents test suites from caring overly much about various

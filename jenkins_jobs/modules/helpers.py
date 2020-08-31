@@ -26,12 +26,10 @@ import pkg_resources
 
 
 def build_trends_publisher(plugin_name, xml_element, data):
-    """Helper to create various trend publishers.
-    """
+    """Helper to create various trend publishers."""
 
     def append_thresholds(element, data, only_totals):
-        """Appends the status thresholds.
-        """
+        """Appends the status thresholds."""
 
         for status in ["unstable", "failed"]:
             status_data = data.get(status, {})

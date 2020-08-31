@@ -79,8 +79,7 @@ class UpdateTests(CmdTestsBase):
         jenkins_get_all_jobs,
         jenkins_job_exists,
     ):
-        """
-        Test update behaviour with --delete-old option
+        """Test update behaviour with --delete-old option.
 
         * mock out a call to jenkins.Jenkins.get_jobs() to return a known list
           of job names.
@@ -117,11 +116,9 @@ class UpdateTests(CmdTestsBase):
         self.assertEqual(jenkins_delete_job.call_count, len(calls))
 
     def test_update_timeout_not_set(self):
-        """Validate update timeout behavior when timeout not explicitly configured.
-        """
+        """Validate update timeout behavior when timeout not explicitly configured."""
         self.skipTest("TODO: Develop actual update timeout test approach.")
 
     def test_update_timeout_set(self):
-        """Validate update timeout behavior when timeout is explicitly configured.
-        """
+        """Validate update timeout behavior when timeout is explicitly configured."""
         self.skipTest("TODO: Develop actual update timeout test approach.")

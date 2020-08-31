@@ -110,8 +110,9 @@ class XmlGenerator(object):
 
 
 class XmlJobGenerator(XmlGenerator):
-    """ This class is responsible for generating Jenkins Configuration XML from
-    a compatible intermediate representation of Jenkins Jobs.
+    """Class for generating Jenkins Configuration XML.
+
+    Generates XML from a compatible intermediate representation of Jenkins Jobs.
     """
 
     entry_point_group = "jenkins_jobs.projects"
@@ -120,8 +121,9 @@ class XmlJobGenerator(XmlGenerator):
 
 
 class XmlViewGenerator(XmlGenerator):
-    """ This class is responsible for generating Jenkins Configuration XML from
-    a compatible intermediate representation of Jenkins Views.
+    """Class for generating Jenkins Configuration XML.
+
+    Generates XML from a compatible intermediate representation of Jenkins Views.
     """
 
     entry_point_group = "jenkins_jobs.views"

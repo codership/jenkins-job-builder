@@ -155,8 +155,9 @@ class JenkinsManager(object):
             self.jenkins.delete_job(job_name)
 
     def get_plugins_info(self):
-        """ Return a list of plugin_info dicts, one for each plugin on the
-        Jenkins instance.
+        """Return a list of plugin_info dicts.
+
+        Returns one for each plugin on the Jenkins instance.
         """
         try:
             plugins_list = self.jenkins.get_plugins().values()

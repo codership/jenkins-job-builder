@@ -51,8 +51,7 @@ def gerrit_handle_legacy_configuration(data):
     hyphenizer = re.compile("[A-Z]")
 
     def hyphenize(attr):
-        """Convert strings like triggerOn to trigger-on.
-        """
+        """Convert strings like triggerOn to trigger-on."""
         return hyphenizer.sub(lambda x: "-%s" % x.group(0).lower(), attr)
 
     def convert_dict(d, old_keys):

@@ -50,8 +50,7 @@ class BaseSubCommand(object):
 
     @staticmethod
     def parse_option_recursive_exclude(parser):
-        """Add '--recursive'  and '--exclude' arguments to given parser.
-        """
+        """Add '--recursive'  and '--exclude' arguments to given parser."""
         parser.add_argument(
             "-r",
             "--recursive",

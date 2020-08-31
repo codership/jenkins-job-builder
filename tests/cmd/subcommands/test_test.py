@@ -243,7 +243,9 @@ class TestTests(CmdTestsBase):
 
 
 class TestJenkinsGetPluginInfoError(CmdTestsBase):
-    """ This test class is used for testing the 'test' subcommand when we want
+    """Test without mocking get_plugins_info.
+
+    This test class is used for testing the 'test' subcommand when we want
     to validate its behavior without mocking
     jenkins_jobs.builder.JenkinsManager.get_plugins_info
     """
@@ -354,7 +356,7 @@ class MatchesDir(object):
         for root, _, files in os.walk(directory):
             return files
 
-    def __str__(self,):
+    def __str__(self, directory):
         return "MatchesDir({0})".format(self.__dirname)
 
     def match(self, other_directory):

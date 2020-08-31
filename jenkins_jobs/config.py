@@ -145,8 +145,7 @@ class JJBConfig(object):
             config_fp.close()
 
     def _init_defaults(self):
-        """ Initialize default configuration values using DEFAULT_CONF
-        """
+        """Initialize default configuration values using DEFAULT_CONF."""
         config = configparser.ConfigParser()
         # Load default config always
         if PY2:
@@ -156,9 +155,7 @@ class JJBConfig(object):
         return config
 
     def _read_config_file(self, config_filename):
-        """ Given path to configuration file, read it in as a ConfigParser
-        object and return that object.
-        """
+        """Return a ConfigParser object from a file input."""
         if os.path.isfile(config_filename):
             self.__config_file = config_filename  # remember file we read from
             logger.debug("Reading config from {0}".format(config_filename))
@@ -354,7 +351,9 @@ class JJBConfig(object):
             raise JenkinsJobsException("plugins_info must contain a list!")
 
     def get_module_config(self, section, key, default=None):
-        """ Given a section name and a key value, return the value assigned to
+        """Returns the value of a config in a config module.
+
+        Given a section name and a key value, return the value assigned to
         the key in the JJB .ini file if it exists, otherwise emit a warning
         indicating that the value is not set. Default value returned if no
         value is set in the file will be a blank string.

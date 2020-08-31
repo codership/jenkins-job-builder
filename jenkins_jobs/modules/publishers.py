@@ -2141,8 +2141,7 @@ def checkstyle(registry, xml_parent, data):
     """
 
     def convert_settings(lookup, data):
-        """Helper to convert settings from one key to another
-        """
+        """Helper to convert settings from one key to another."""
 
         for old_key in list(data.keys()):
             if old_key in lookup:

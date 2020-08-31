@@ -1171,8 +1171,7 @@ def gradle(registry, xml_parent, data):
 
 
 def _groovy_common_scriptSource(data):
-    """Helper function to generate the XML element common to groovy builders
-    """
+    """Helper function to generate the XML element common to groovy builders."""
 
     scriptSource = XML.Element("scriptSource")
     if "command" in data and "file" in data:
@@ -4004,8 +4003,8 @@ def build_publish_docker_image(registry, xml_parent, data):
         registry (default '')
     :arg bool clean-images: Option to clean local images (default false)
     :arg bool jenkins-job-delete: Attempt to remove images when jenkins
-        deletes the run	(default false)
-    :arg str cloud: Cloud to use to build image	(default '')
+        deletes the run (default false)
+    :arg str cloud: Cloud to use to build image (default '')
 
     Minimal example:
 

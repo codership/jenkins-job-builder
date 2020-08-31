@@ -29,8 +29,7 @@ def __version__():
 
 
 def create_parser():
-    """ Create an ArgumentParser object usable by JenkinsJobs.
-    """
+    """Create an ArgumentParser object usable by JenkinsJobs."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--conf",

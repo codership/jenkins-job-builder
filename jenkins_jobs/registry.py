@@ -88,9 +88,10 @@ class ModuleRegistry(object):
         return plugins_info_dict
 
     def get_plugin_info(self, plugin_name):
-        """ This method is intended to provide information about plugins within
-        a given module's implementation of Base.gen_xml. The return value is a
-        dictionary with data obtained directly from a running Jenkins instance.
+        """Provide information about plugins within a module's impl of Base.gen_xml.
+
+        The return value is a dictionary with data obtained directly from a
+        running Jenkins instance.
         This allows module authors to differentiate generated XML output based
         on information such as specific plugin versions.
 
