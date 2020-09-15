@@ -2567,9 +2567,13 @@ def base_email_ext(registry, xml_parent, data, ttype):
         XML.SubElement(trigger, "triggerScript").text = data["trigger-script"]
 
     if plugin_version >= pkg_resources.parse_version("2.39"):
-        XML.SubElement(email, "attachmentsPattern").text = ""
-        XML.SubElement(email, "attachBuildLog").text = "false"
-        XML.SubElement(email, "compressBuildLog").text = "false"
+        mappings = [
+            ("attachments", "attachmentsPattern", ""),
+            ("attach-build-log", "attachBuildLog", False),
+            ("compress-log", "compressBuildLog", False),
+        ]
+
+        helpers.convert_mapping_to_xml(email, data, mappings, fail_required=True)
 
 
 def email_ext(registry, xml_parent, data):

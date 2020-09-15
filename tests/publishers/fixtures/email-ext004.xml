@@ -19,9 +19,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
@@ -39,9 +39,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.FirstFailureTrigger>
@@ -59,9 +59,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
           <failureCount>0</failureCount>
         </hudson.plugins.emailext.plugins.trigger.FirstFailureTrigger>
@@ -80,9 +80,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FirstUnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.NotBuiltTrigger>
@@ -100,9 +100,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.NotBuiltTrigger>
         <hudson.plugins.emailext.plugins.trigger.AbortedTrigger>
@@ -120,9 +120,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.AbortedTrigger>
         <hudson.plugins.emailext.plugins.trigger.RegressionTrigger>
@@ -140,9 +140,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.RegressionTrigger>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -160,9 +160,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.SecondFailureTrigger>
@@ -180,9 +180,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
           <failureCount>0</failureCount>
         </hudson.plugins.emailext.plugins.trigger.SecondFailureTrigger>
@@ -201,9 +201,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.ImprovementTrigger>
         <hudson.plugins.emailext.plugins.trigger.StillFailingTrigger>
@@ -221,9 +221,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.StillFailingTrigger>
         <hudson.plugins.emailext.plugins.trigger.SuccessTrigger>
@@ -241,9 +241,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.SuccessTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -261,9 +261,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedUnhealthyTrigger>
@@ -281,9 +281,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedUnhealthyTrigger>
         <hudson.plugins.emailext.plugins.trigger.StillUnstableTrigger>
@@ -301,9 +301,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.StillUnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.PreBuildTrigger>
@@ -321,9 +321,9 @@
               <hudson.plugins.emailext.plugins.recipients.FirstFailingBuildSuspectsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.UpstreamComitterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
-            <attachBuildLog>false</attachBuildLog>
-            <compressBuildLog>false</compressBuildLog>
+            <attachmentsPattern>*/foo*.log</attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
           </email>
         </hudson.plugins.emailext.plugins.trigger.PreBuildTrigger>
       </configuredTriggers>
@@ -333,8 +333,8 @@
       <attachmentsPattern>*/foo*.log</attachmentsPattern>
       <presendScript>cancel=true</presendScript>
       <postsendScript>cancel=true</postsendScript>
-      <attachBuildLog>false</attachBuildLog>
-      <compressBuildLog>false</compressBuildLog>
+      <attachBuildLog>true</attachBuildLog>
+      <compressBuildLog>true</compressBuildLog>
       <saveOutput>true</saveOutput>
       <disabled>false</disabled>
       <replyTo>foo@example.com</replyTo>
