@@ -65,6 +65,11 @@
             <jenkins.plugins.git.traits.CleanBeforeCheckoutTrait>
               <extension class="hudson.plugins.git.extensions.impl.CleanBeforeCheckout"/>
             </jenkins.plugins.git.traits.CleanBeforeCheckoutTrait>
+            <jenkins.plugins.git.traits.UserIdentityTrait>
+              <extension class="hudson.plugins.git.extensions.impl.UserIdentity">
+                <email>no-reply@ci.example.com</email>
+              </extension>
+            </jenkins.plugins.git.traits.UserIdentityTrait>
             <jenkins.plugins.git.traits.CloneOptionTrait>
               <extension class="hudson.plugins.git.extensions.impl.CloneOption">
                 <shallow>true</shallow>

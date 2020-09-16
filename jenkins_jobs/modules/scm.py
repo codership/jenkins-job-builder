@@ -264,6 +264,9 @@ def git(registry, xml_parent, data):
         * **clean** (`dict`)
             * **after** (`bool`) - Clean the workspace after checkout
             * **before** (`bool`) - Clean the workspace before checkout
+        * **committer** (`dict`)
+            * **name** (`str`) - Name to use as author of new commits
+            * **email** (`str`) - E-mail address to use for new commits
         * **excluded-users**: (`list(string)`) - list of users to ignore
             revisions from when polling for changes.
             (if polling is enabled, optional)
@@ -524,6 +527,22 @@ def git_extensions(xml_parent, data):
                 ext = XML.SubElement(tr, "extension", {"class": ext_name})
             else:
                 ext = XML.SubElement(xml_parent, ext_name)
+    committer = data.get("committer", {})
+    if committer:
+        ext_name = impl_prefix + "UserIdentity"
+        if trait:
+            trait_name = "com.cloudbees.jenkins.plugins.bitbucket.notifications.SkipNotificationsTrait"
+            trait_name = "UserIdentityTrait"
+            tr = XML.SubElement(xml_parent, trait_prefix + trait_name)
+            ext = XML.SubElement(tr, "extension", {"class": ext_name})
+        else:
+            ext = XML.SubElement(xml_parent, ext_name)
+        name = committer.get("name")
+        if name:
+            XML.SubElement(ext, "name").text = name
+        email = committer.get("email")
+        if email:
+            XML.SubElement(ext, "email").text = email
     if not trait and "excluded-users" in data:
         excluded_users = "\n".join(data["excluded-users"])
         ext = XML.SubElement(xml_parent, impl_prefix + "UserExclusion")
