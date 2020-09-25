@@ -82,9 +82,12 @@ def deep_format(obj, paramdict, allow_empty=False):
     else:
         ret = obj
     if isinstance(ret, CustomLoader):
-        # If we have a CustomLoader here, we've lazily-loaded a template;
+        # If we have a CustomLoader here, we've lazily-loaded a template
+        # or rendered a template to a piece of YAML;
         # attempt to format it.
-        ret = deep_format(ret, paramdict, allow_empty=allow_empty)
+        ret = deep_format(
+            ret.get_object_to_format(), paramdict, allow_empty=allow_empty
+        )
     return ret
 
 
