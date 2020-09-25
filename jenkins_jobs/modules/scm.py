@@ -238,7 +238,7 @@ def git(registry, xml_parent, data):
             * **redmineweb** - https://www.redmine.org/
             * **rhodecode** - https://rhodecode.com/
             * **stash** - https://www.atlassian.com/software/bitbucket/enterprise/data-center
-            * **viewgit** - http://viewgit.fealdia.org/
+            * **viewgit**
     :arg str browser-url: url for the repository browser (required if browser
         is not 'auto', no default)
     :arg str browser-version: version of the repository browser (GitLab only,
