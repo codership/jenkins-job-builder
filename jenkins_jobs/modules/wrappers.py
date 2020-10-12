@@ -1289,11 +1289,16 @@ def vault_secrets(registry, xml_parent, data):
 
     :arg str vault-url: Vault URL
     :arg str credentials-id: Vault Credential
+    :arg str engine-version: Vault K/V Engine version
+    :arg bool fail-if-not-found: Fail if the secret path is not found
+    :arg bool skip-ssl-verification: Skip verification of SSL certs
     :arg list secrets: List of secrets
 
       :secrets:
         * **secret-path** (`str`) --
           The path of the secret in the vault server
+        * **engine-version** (`str`) --
+          Vault K/V Engine version
 
         :secret-values:
           * **secret-values** (`list`) -- List of key / value pairs
@@ -1321,12 +1326,18 @@ def vault_secrets(registry, xml_parent, data):
     conf_mapping = [
         ("vault-url", "vaultUrl", ""),
         ("credentials-id", "vaultCredentialId", ""),
+        ("engine-version", "engineVersion", "1"),
+        ("fail-if-not-found", "failIfNotFound", "true"),
+        ("skip-ssl-verification", "skipSslVerification", "false"),
     ]
     helpers.convert_mapping_to_xml(
         configuration, data, conf_mapping, fail_required=True
     )
 
-    secret_obj_mapping = [("secret-path", "path", "")]
+    secret_obj_mapping = [
+        ("secret-path", "path", ""),
+        ("engine-version", "engineVersion", "1"),
+    ]
     secret_value_mapping = [("env-var", "envVar", ""), ("vault-key", "vaultKey", "")]
     secretsobj = XML.SubElement(vault, "vaultSecrets")
     secrets = data.get("secrets", [])
