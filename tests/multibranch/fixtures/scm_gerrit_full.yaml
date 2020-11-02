@@ -15,6 +15,14 @@ scm:
             query-operator: 'SCHEME'
             query-string: 'jenkins'
         build-strategies:
+            - all-strategies-match:
+                strategies:
+                  - regular-branches: true
+                  - skip-initial-build: true
+            - any-strategies-match:
+                strategies:
+                  - change-request: {}
+                  - tags: {}
             - tags:
                 ignore-tags-newer-than: 1
                 ignore-tags-older-than: 7

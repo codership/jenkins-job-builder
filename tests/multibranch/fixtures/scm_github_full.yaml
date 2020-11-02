@@ -24,6 +24,14 @@ scm:
                 - trigger-build-on-pr-review: true
                 - trigger-build-on-pr-update: true
         build-strategies:
+            - all-strategies-match:
+                strategies:
+                  - regular-branches: true
+                  - skip-initial-build: true
+            - any-strategies-match:
+                strategies:
+                  - change-request: {}
+                  - tags: {}
             - tags:
                 ignore-tags-newer-than: 1
                 ignore-tags-older-than: 7

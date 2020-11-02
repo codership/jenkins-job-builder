@@ -134,6 +134,23 @@
           </properties>
         </strategy>
         <buildStrategies>
+          <jenkins.branch.buildstrategies.basic.AllBranchBuildStrategyImpl plugin="basic-branch-build-strategies">
+            <strategies>
+              <jenkins.branch.buildstrategies.basic.BranchBuildStrategyImpl plugin="basic-branch-build-strategies"/>
+              <jenkins.branch.buildstrategies.basic.SkipInitialBuildOnFirstBranchIndexing plugin="basic-branch-build-strategies"/>
+            </strategies>
+          </jenkins.branch.buildstrategies.basic.AllBranchBuildStrategyImpl>
+          <jenkins.branch.buildstrategies.basic.AnyBranchBuildStrategyImpl plugin="basic-branch-build-strategies">
+            <strategies>
+              <jenkins.branch.buildstrategies.basic.ChangeRequestBuildStrategyImpl plugin="basic-branch-build-strategies">
+                <ignoreTargetOnlyChanges>false</ignoreTargetOnlyChanges>
+              </jenkins.branch.buildstrategies.basic.ChangeRequestBuildStrategyImpl>
+              <jenkins.branch.buildstrategies.basic.TagBuildStrategyImpl plugin="basic-branch-build-strategies">
+                <atMostMillis>-1</atMostMillis>
+                <atLeastMillis>-1</atLeastMillis>
+              </jenkins.branch.buildstrategies.basic.TagBuildStrategyImpl>
+            </strategies>
+          </jenkins.branch.buildstrategies.basic.AnyBranchBuildStrategyImpl>
           <jenkins.branch.buildstrategies.basic.TagBuildStrategyImpl plugin="basic-branch-build-strategies">
             <atMostMillis>86400000</atMostMillis>
             <atLeastMillis>604800000</atLeastMillis>
