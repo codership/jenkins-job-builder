@@ -1107,6 +1107,12 @@ def build_strategies(xml_parent, data):
 
     :arg list build-strategies: Definition of build strategies.
 
+        * **all-strategies-match** (dict): All sub strategies must match for
+            this strategy to match.
+            * **strategies** (list): Sub strategies
+        * **any-strategies-match** (dict): Builds whenever any of the sub
+            strategies match.
+            * **strategies** (list): Sub strategies
         * **tags** (dict): Builds tags
             * **ignore-tags-newer-than** (int) The number of days since the tag
                 was created before it is eligible for automatic building.
@@ -1151,8 +1157,29 @@ def build_strategies(xml_parent, data):
     """
 
     basic_build_strategies = "jenkins.branch.buildstrategies.basic"
-    bbs = XML.SubElement(xml_parent, "buildStrategies")
-    for bbs_list in data.get("build-strategies", None):
+    if data.get("build-strategies", None):
+        bbs_data = data.get("build-strategies", None)
+        bbs = XML.SubElement(xml_parent, "buildStrategies")
+    else:
+        bbs_data = data.get("strategies", None)
+        bbs = XML.SubElement(xml_parent, "strategies")
+    for bbs_list in bbs_data:
+        if "all-strategies-match" in bbs_list:
+            all_elem = XML.SubElement(
+                bbs,
+                "".join([basic_build_strategies, ".AllBranchBuildStrategyImpl"]),
+                {"plugin": "basic-branch-build-strategies"},
+            )
+            build_strategies(all_elem, bbs_list["all-strategies-match"])
+
+        if "any-strategies-match" in bbs_list:
+            any_elem = XML.SubElement(
+                bbs,
+                "".join([basic_build_strategies, ".AnyBranchBuildStrategyImpl"]),
+                {"plugin": "basic-branch-build-strategies"},
+            )
+            build_strategies(any_elem, bbs_list["any-strategies-match"])
+
         if "tags" in bbs_list:
             tags = bbs_list["tags"]
             tags_elem = XML.SubElement(
