@@ -3,7 +3,7 @@ publishers:
       projects:
         - project-one
         - project-two
-      threshold: unstable
+      even-if-unstable: true
       publishers:
         - trigger-parameterized-builds:
           - project: archive
