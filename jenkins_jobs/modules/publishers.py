@@ -2011,8 +2011,8 @@ def findbugs(registry, xml_parent, data):
     r"""yaml: findbugs
     FindBugs reporting for builds
 
-    Requires the Jenkins :jenkins-plugins:`FindBugs Plugin
-    <findbugs>`.
+    Requires the Jenkins FindBugs Plugin
+    (https://github.com/jenkinsci/findbugs-plugin).
 
     :arg str pattern: specifies the generated raw FindBugs XML report files,
         such as \*\*/findbugs.xml or \*\*/findbugsXml.xml. (default '')
@@ -2078,7 +2078,9 @@ def findbugs(registry, xml_parent, data):
 def checkstyle(registry, xml_parent, data):
     """yaml: checkstyle
     Publish trend reports with Checkstyle.
-    Requires the Jenkins :jenkins-plugins:`Checkstyle Plugin <checkstyle>`.
+
+    Requires the Jenkins Checkstyle Plugin
+    (https://github.com/jenkinsci/checkstyle-plugin).
 
     The checkstyle component accepts a dictionary with the
     following values:
@@ -3289,8 +3291,8 @@ def cigame(registry, xml_parent, data):
     """yaml: cigame
     This plugin introduces a game where users get points
     for improving the builds.
-    Requires the Jenkins :jenkins-plugins:`The Continuous Integration Game
-    plugin <ci-game>`.
+    Requires the Jenkins Continuous Integration Game
+    plugin (https://github.com/jenkinsci/ci-game-plugin).
 
     Example:
 
@@ -4753,8 +4755,10 @@ def robot(registry, xml_parent, data):
 def warnings(registry, xml_parent, data):
     """yaml: warnings
     Generate trend report for compiler warnings in the console log or
-    in log files. Requires the Jenkins :jenkins-plugins:`Warnings Plugin
-    <warnings>`.
+    in log files.
+
+    Requires the Jenkins Warnings Plugin
+    (https://github.com/jenkinsci/warnings-plugin).
 
     :arg list console-log-parsers: The parser to use to scan the console
         log (default '')
@@ -6200,7 +6204,8 @@ def valgrind(registry, xml_parent, data):
 def pmd(registry, xml_parent, data):
     """yaml: pmd
     Publish trend reports with PMD.
-    Requires the Jenkins :jenkins-plugins:`PMD Plugin <pmd>`.
+
+    Requires the Jenkins PMD Plugin (https://github.com/jenkinsci/pmd-plugin).
 
     The PMD component accepts a dictionary with the following values:
 
@@ -6312,7 +6317,8 @@ def scan_build(registry, xml_parent, data):
 def dry(registry, xml_parent, data):
     """yaml: dry
     Publish trend reports with DRY.
-    Requires the Jenkins :jenkins-plugins:`DRY Plugin <dry>`.
+
+    Requires the Jenkins DRY Plugin (https://github.com/jenkinsci/dry-plugin).
 
     The DRY component accepts a dictionary with the following values:
 
@@ -8030,7 +8036,8 @@ def tasks(registry, xml_parent, data):
 
     Scans the workspace files for open tasks and generates a trend report.
 
-    Requires the Jenkins :jenkins-plugins:`Task Scanner Plugin <tasks>`.
+    Requires the Jenkins Task Scanner Plugin
+    (https://github.com/jenkinsci/tasks-plugin).
 
     :arg list files-to-scan: Fileset includes setting that specifies the
         workspace files to scan for tasks, such as ``**/*.java``. Basedir of
