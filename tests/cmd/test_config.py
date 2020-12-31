@@ -1,12 +1,13 @@
 import io
 import os
 
-from mock import patch
 from tests.base import mock
 from tests.cmd.test_cmd import CmdTestsBase
 
 from jenkins_jobs.cli import entry
 from jenkins_jobs import builder
+
+patch = mock.patch
 
 
 @mock.patch("jenkins_jobs.builder.JenkinsManager.get_plugins_info", mock.MagicMock)

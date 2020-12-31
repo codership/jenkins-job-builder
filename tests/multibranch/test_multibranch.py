@@ -14,7 +14,7 @@
 # under the License.
 
 from tests import base
-import mock
+from tests.base import mock
 import os
 from jenkins_jobs.modules import project_multibranch
 
