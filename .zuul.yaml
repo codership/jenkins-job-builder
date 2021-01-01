@@ -18,6 +18,9 @@
       - docs-on-readthedocs
       - openstack-python-jobs-no-constraints
       - openstack-python35-jobs-no-constraints
+      - openstack-python36-jobs-no-constraints
+      - openstack-python37-jobs-no-constraints
+      - openstack-python38-jobs-no-constraints
     vars:
       rtd_webhook_id: '47271'
     check:
