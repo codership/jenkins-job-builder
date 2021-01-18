@@ -1789,13 +1789,6 @@ def conditional_step(registry, xml_parent, data):
                 )
                 build_condition(condition, conditions_container_tag, "condition")
 
-    def build_step(parent, step):
-        for edited_node in create_builders(registry, step):
-            if not has_multiple_steps:
-                edited_node.set("class", edited_node.tag)
-                edited_node.tag = "buildStep"
-            parent.append(edited_node)
-
     cond_builder_tag = (
         "org.jenkinsci.plugins.conditionalbuildstep."
         "singlestep.SingleConditionalBuilder"
@@ -1803,8 +1796,14 @@ def conditional_step(registry, xml_parent, data):
     cond_builders_tag = (
         "org.jenkinsci.plugins.conditionalbuildstep." "ConditionalBuilder"
     )
-    steps = data["steps"]
-    has_multiple_steps = len(steps) > 1
+    # A builder could be a macro, so it's required to create builders at first
+    # to set `has_multiple_steps` flag correctly.
+    edited_nodes = [
+        edited_node
+        for step in data["steps"]
+        for edited_node in create_builders(registry, step)
+    ]
+    has_multiple_steps = len(edited_nodes) > 1
 
     if has_multiple_steps:
         root_tag = XML.SubElement(xml_parent, cond_builders_tag)
@@ -1827,8 +1826,11 @@ def conditional_step(registry, xml_parent, data):
     }
     evaluation_class = evaluation_classes[data.get("on-evaluation-failure", "fail")]
     XML.SubElement(root_tag, "runner").set("class", evaluation_class)
-    for step in steps:
-        build_step(steps_parent, step)
+    for edited_node in edited_nodes:
+        if not has_multiple_steps:
+            edited_node.set("class", edited_node.tag)
+            edited_node.tag = "buildStep"
+        steps_parent.append(edited_node)
 
 
 def maven_builder(registry, xml_parent, data):
