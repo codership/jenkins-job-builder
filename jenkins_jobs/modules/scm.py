@@ -633,9 +633,14 @@ def git_extensions(xml_parent, data):
     if trait and skip_notifications:
         trait_name = "com.cloudbees.jenkins.plugins.bitbucket.notifications.SkipNotificationsTrait"
         XML.SubElement(xml_parent, trait_name)
-    if not trait and "sparse-checkout" in data:
+    if "sparse-checkout" in data:
         ext_name = impl_prefix + "SparseCheckoutPaths"
-        ext = XML.SubElement(xml_parent, ext_name)
+        if trait:
+            trait_name = "SparseCheckoutPathsTrait"
+            tr = XML.SubElement(xml_parent, trait_prefix + trait_name)
+            ext = XML.SubElement(tr, "extension", {"class": ext_name})
+        else:
+            ext = XML.SubElement(xml_parent, ext_name)
         sparse_co = XML.SubElement(ext, "sparseCheckoutPaths")
         sparse_paths = data["sparse-checkout"].get("paths")
         if sparse_paths is not None:
