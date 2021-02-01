@@ -1259,6 +1259,41 @@ def disable_resume(registry, xml_parent, data):
     )
 
 
+def resource_gating(registry, xml_parent, data):
+    """yaml: resource-gating
+    Jenkins Gating enables requiring external resources to be available before
+    build starts.
+
+    Requires the Jenkins: :jenkins-plugins:`Jenkins Gating <gating-core>`.
+
+    :arg list resources: Resource identifiers to be up before building
+
+    Example:
+
+    .. literalinclude:: /../../tests/properties/fixtures/gating-core.yaml
+        :language: yaml
+    """
+    if "resources" not in data.keys():
+        raise MissingAttributeError("resources")
+
+    gating = XML.SubElement(
+        xml_parent, "io.jenkins.plugins.gating.ResourceRequirementProperty"
+    )
+    gating.set("plugin", "gating-core")
+
+    resources = XML.SubElement(gating, "resources")
+    resources.set("class", "java.util.Collections$UnmodifiableRandomAccessList")
+    resources.set("resolves-to", "java.util.Collections$UnmodifiableList")
+
+    c = XML.SubElement(resources, "c")
+    c.set("class", "list")
+    for resource in data["resources"]:
+        XML.SubElement(c, "string").text = str(resource)
+
+    lst = XML.SubElement(resources, "list")
+    lst.set("reference", "../c")
+
+
 def cachet_gating(registry, xml_parent, data):
     """yaml: cachet-gating
     The Cachet Gating Plugin provides a gating mechanism
