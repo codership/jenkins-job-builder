@@ -97,8 +97,8 @@ jenkins section
 **query_plugins_info**
   Whether to query the Jenkins instance for plugin info. If no configuration
   files are found (either in the default paths or given through the
-  command-line), `jenkins-jobs` will skip querying for plugin information. True
-  by default.
+  command-line), `jenkins-jobs` will skip querying for plugin information.
+  False by default.
 
 
 hipchat section
