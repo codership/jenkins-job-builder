@@ -609,6 +609,9 @@ class LateYamlLoader(CustomLoader):
         self._yaml_str = yaml_str
         self._loader = loader
 
+    def __deepcopy__(self, memo):
+        return LateYamlLoader(self._yaml_str, copy.deepcopy(self._loader, memo))
+
     def get_object_to_format(self):
         return load(self._yaml_str, search_path=self._loader._search_path)
 
@@ -617,6 +620,9 @@ class Jinja2YamlLoader(Jinja2Loader):
     def format(self, **kwargs):
         yaml_str = super(Jinja2YamlLoader, self).format(**kwargs)
         return LateYamlLoader(yaml_str, self)
+
+    def __deepcopy__(self, memo):
+        return Jinja2YamlLoader(self._contents, self._search_path)
 
 
 class CustomLoaderCollection(object):
