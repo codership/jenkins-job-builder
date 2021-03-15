@@ -85,6 +85,7 @@ scm:
             recursive: true
             parent-credentials: true
             timeout: 100
+            threads: 1
         timeout: "100"
         use-author: true
         wipe-workspace: true
