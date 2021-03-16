@@ -456,6 +456,8 @@ def bitbucket_scm(xml_parent, data):
             build changeset (default false)
         * **wipe-workspace** (`bool`) - Wipe out workspace before build
             (default true)
+        * **lfs-pull** (`bool`) - Call git lfs pull after checkout
+            (default false)
 
 
     Minimal Example:
@@ -645,6 +647,7 @@ def bitbucket_scm(xml_parent, data):
     # - prune
     # - wipe-workspace
     # - use-author
+    # - lfs-pull
     git_extensions(traits, data)
 
 
@@ -826,6 +829,8 @@ def git_scm(xml_parent, data):
             build changeset (default false)
         * **wipe-workspace** (`bool`) - Wipe out workspace before build
             (default true)
+        * **lfs-pull** (`bool`) - Call git lfs pull after checkout
+            (default false)
 
     Minimal Example:
 
@@ -885,6 +890,7 @@ def git_scm(xml_parent, data):
     # - prune
     # - wipe-workspace
     # - use-author
+    # - lfs-pull
     git_extensions(traits, data)
 
 
@@ -975,6 +981,8 @@ def github_scm(xml_parent, data):
             build changeset (default false)
         * **wipe-workspace** (`bool`) - Wipe out workspace before build
             (default true)
+        * **lfs-pull** (`bool`) - Call git lfs pull after checkout
+            (default false)
 
     Minimal Example:
 
@@ -1111,6 +1119,7 @@ def github_scm(xml_parent, data):
     # - prune
     # - wipe-workspace
     # - use-author
+    # - lfs-pull
     git_extensions(traits, data)
 
     if data.get("refspecs"):
