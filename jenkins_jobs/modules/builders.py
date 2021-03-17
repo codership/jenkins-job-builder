@@ -4694,6 +4694,9 @@ def xunit(registry, xml_parent, data):
        :language: yaml
 
     """
+    info = registry.get_plugin_info("xunit")
+    plugin_version = pkg_resources.parse_version(info.get("version", str(sys.maxsize)))
+
     logger = logging.getLogger(__name__)
     xunit = XML.SubElement(xml_parent, "org.jenkinsci.plugins.xunit.XUnitBuilder")
     xunit.set("plugin", "xunit")
@@ -4733,7 +4736,13 @@ def xunit(registry, xml_parent, data):
             supported_types.append(configured_type)
 
     # Generate XML for each of the supported framework types
-    xmltypes = XML.SubElement(xunit, "types")
+    # Note: versions 3+ are now using the 'tools' sub-element instead of 'types'
+    if plugin_version < pkg_resources.parse_version("3.0.0"):
+        types_name = "types"
+    else:
+        types_name = "tools"
+
+    xmltypes = XML.SubElement(xunit, types_name)
     mappings = [
         ("pattern", "pattern", ""),
         ("requireupdate", "failIfNotNew", True),
