@@ -22,6 +22,7 @@ from yaml.composer import ComposerError
 
 from jenkins_jobs.config import JJBConfig
 from jenkins_jobs.parser import YamlParser
+from jenkins_jobs.registry import ModuleRegistry
 from tests import base
 
 
@@ -118,3 +119,23 @@ class TestCaseLocalYamlRetainAnchors(base.BaseTestCase):
         jjb_config.validate()
         j = YamlParser(jjb_config)
         j.load_files([os.path.join(self.fixtures_path, f) for f in files])
+
+    def test_retain_anchors_enabled_j2_yaml(self):
+        """
+        Verify that anchors are retained across files and are properly retained when using !j2-yaml.
+        """
+
+        files = [
+            "custom_retain_anchors_j2_yaml_include001.yaml",
+            "custom_retain_anchors_j2_yaml.yaml",
+        ]
+
+        jjb_config = JJBConfig()
+        jjb_config.yamlparser["retain_anchors"] = True
+        jjb_config.validate()
+        j = YamlParser(jjb_config)
+        j.load_files([os.path.join(self.fixtures_path, f) for f in files])
+
+        registry = ModuleRegistry(jjb_config, None)
+        jobs, _ = j.expandYaml(registry)
+        self.assertEqual(jobs[0]["builders"][0]["shell"], "docker run ubuntu:latest")

@@ -613,7 +613,10 @@ class LateYamlLoader(CustomLoader):
         return LateYamlLoader(self._yaml_str, copy.deepcopy(self._loader, memo))
 
     def get_object_to_format(self):
-        return load(self._yaml_str, search_path=self._loader._search_path)
+        return yaml.load(
+            self._yaml_str,
+            functools.partial(LocalLoader, search_path=self._loader._search_path),
+        )
 
 
 class Jinja2YamlLoader(Jinja2Loader):

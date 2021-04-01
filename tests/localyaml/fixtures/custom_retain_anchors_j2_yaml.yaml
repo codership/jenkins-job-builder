@@ -1,0 +1,12 @@
+- job-template:
+    name: 'test-job-template'
+    builders:
+    - shell:
+        docker run {docker-image}
+
+- project:
+    name: test-project
+    jobs:
+    - 'test-job-template':
+        docker-image: !j2-yaml: |
+            *docker-image
