@@ -1,0 +1,5 @@
+- job:
+    name: active-choices-job
+    parameters:
+      - active-choices-reactive:
+          name: foo

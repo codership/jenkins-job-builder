@@ -1249,6 +1249,73 @@ def active_choices_param(registry, xml_parent, data):
     element_name = "org.biouno.unochoice.ChoiceParameter"
     pdef = XML.SubElement(xml_parent, element_name)
 
+    __active_choice_param_internal(pdef, data)
+
+
+def active_choices_reactive_param(registry, xml_parent, data):
+    """yaml: active-choices-reactive
+    Active Choices Reactive Parameter
+
+    Requires the Jenkins :jenkins-wiki:`Active Choices Plug-in
+    <active+choices+plugin>`.
+
+    :arg str name: Name of the parameter (required).
+    :arg str description: Description of the parameter.
+    :arg list script: Use a Groovy script to define the parameter.
+
+        :Parameter: * **groovy** (`str`) Groovy DSL Script
+                    * **use-groovy-sandbox** (`bool`) To run this
+                        Groovy script in a sandbox with limited abilities
+                        (default True)
+                    * **script-additional-classpath** (`list`) Additional
+                        classpath entries accessible from the script.
+    :arg list fallback-script: Use a Fallback script. If the script
+        (specified above) fails, the fallback script will be used as a fallback.
+
+        :Parameter: * **groovy** (`str`) Groovy DSL Script
+                    * **use-groovy-sandbox** (`bool`) To run this Groovy
+                        script in a sandbox with limited abilities.
+                        (default True)
+                    * **script-additional-classpath** (`list`) Additional
+                        classpath entries accessible from the script.
+    :arg bool enable-filters: If enabled a text box will appear next to
+        this element and will permit the user to filter its entries. The
+        list values never get re-evaluated (default False).
+    :arg int filter-starts-at: How many characters a user must enter
+        before the filter is applied (default 1).
+    :arg str choice-type: type of the choices. (default 'single-select')
+
+        :Allowed Values: * **single-select**
+                    * **multi-select**
+                    * **radio-buttons**
+                    * **checkboxes**
+    :arg str referenced-parameters: Comma separated list of other job
+        parameters referenced in the uno-choice script
+
+    Minimal Example:
+
+    .. literalinclude::
+        /../../tests/yamlparser/fixtures/active-choices-reactive-param001.yaml
+       :language: yaml
+
+    Full Example:
+
+    .. literalinclude::
+        /../../tests/yamlparser/fixtures/active-choices-reactive-param002.yaml
+       :language: yaml
+    """
+
+    element_name = "org.biouno.unochoice.CascadeChoiceParameter"
+    pdef = XML.SubElement(xml_parent, element_name)
+
+    __active_choice_param_internal(pdef, data)
+
+    mapping = [("referenced-parameters", "referencedParameters", "")]
+    helpers.convert_mapping_to_xml(pdef, data, mapping, fail_required=False)
+    XML.SubElement(pdef, "parameters", {"class": "linked-hash-map"})
+
+
+def __active_choice_param_internal(xml_parent, data):
     valid_choice_types_dict = {
         "single-select": "PT_SINGLE_SELECT",
         "multi-select": "PT_MULTI_SELECT",
@@ -1266,12 +1333,12 @@ def active_choices_param(registry, xml_parent, data):
         ("_project-full-name", "projectFullName", None),
     ]
 
-    main_script_xml = XML.SubElement(pdef, "script")
+    main_script_xml = XML.SubElement(xml_parent, "script")
     main_script_xml.set("class", "org.biouno.unochoice.model.GroovyScript")
-    __handle_unochoice_script(data, pdef, "fallback-script", main_script_xml)
-    __handle_unochoice_script(data, pdef, "script", main_script_xml)
+    __handle_unochoice_script(data, xml_parent, "fallback-script", main_script_xml)
+    __handle_unochoice_script(data, xml_parent, "script", main_script_xml)
 
-    helpers.convert_mapping_to_xml(pdef, data, mapping, fail_required=True)
+    helpers.convert_mapping_to_xml(xml_parent, data, mapping, fail_required=True)
 
 
 def dynamic_reference_param(registry, xml_parent, data):
@@ -1390,7 +1457,11 @@ class Parameters(jenkins_jobs.modules.base.Base):
             for param in parameters:
                 # Pass job name to the uno-choice plugin
                 param_type = next(iter(param))
-                if param_type in ("active-choices", "dynamic-reference"):
+                if param_type in (
+                    "active-choices",
+                    "active-choices-reactive",
+                    "dynamic-reference",
+                ):
                     param[param_type]["_project-name"] = data["name"].split("/")[-1]
                     param[param_type]["_project-full-name"] = data["name"]
                 self.registry.dispatch("parameter", pdefs, param)
