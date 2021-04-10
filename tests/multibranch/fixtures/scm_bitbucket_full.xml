@@ -140,6 +140,7 @@
                 <parentCredentials>true</parentCredentials>
                 <reference/>
                 <timeout>100</timeout>
+                <threads>1</threads>
               </extension>
             </jenkins.plugins.git.traits.SubmoduleOptionTrait>
             <jenkins.plugins.git.traits.CheckoutOptionTrait>

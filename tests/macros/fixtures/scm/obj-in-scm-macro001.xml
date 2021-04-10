@@ -46,6 +46,7 @@
         <parentCredentials>false</parentCredentials>
         <reference/>
         <timeout>10</timeout>
+        <threads>1</threads>
       </hudson.plugins.git.extensions.impl.SubmoduleOption>
     </extensions>
   </scm>
