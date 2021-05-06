@@ -621,22 +621,7 @@ def bitbucket_scm(xml_parent, data):
             cossh, data.get("checkout-over-ssh"), cossh_credentials, fail_required=True
         )
 
-    if data.get("filter-by-name-wildcard", None):
-        wscmf_name = XML.SubElement(
-            traits,
-            "jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait",
-            {"plugin": "scm-api"},
-        )
-        wscmf_name_mapping = [
-            ("includes", "includes", ""),
-            ("excludes", "excludes", ""),
-        ]
-        helpers.convert_mapping_to_xml(
-            wscmf_name,
-            data.get("filter-by-name-wildcard", ""),
-            wscmf_name_mapping,
-            fail_required=True,
-        )
+    add_filter_by_name_wildcard_behaviors(traits, data)
 
     # handle the default git extensions like:
     # - clean
@@ -943,6 +928,15 @@ def github_scm(xml_parent, data):
         (like to disable SCM triggering or to override the pipeline durability)
         (optional)
         Refer to :func:`~property_strategies <property_strategies>`.
+    :arg dict filter-by-name-wildcard: Enable filter by name with wildcards.
+        Requires the :jenkins-plugins:`SCM API Plugin <scm-api>`.
+
+        * **includes** ('str'): Space-separated list
+            of name patterns to consider. You may use * as a wildcard;
+            for example: `master release*`
+        * **excludes** ('str'): Name patterns to
+            ignore even if matched by the includes list.
+            For example: `release*`
 
     :extensions:
 
@@ -1109,6 +1103,8 @@ def github_scm(xml_parent, data):
         )
         XML.SubElement(rshf, "contextLabel").text = data.get("notification-context")
         XML.SubElement(rshf, "typeSuffix").text = "true"
+
+    add_filter_by_name_wildcard_behaviors(traits, data)
 
     # handle the default git extensions like:
     # - clean
@@ -1764,5 +1760,36 @@ def add_filter_branch_pr_behaviors(traits, data):
             wsof,
             data.get("head-pr-originated-wildcard"),
             wildcard_mapping,
+            fail_required=True,
+        )
+
+
+def add_filter_by_name_wildcard_behaviors(traits, data):
+    """Configure branch filtering behaviors.
+
+    :arg dict filter-by-name-wildcard: Enable filter by name with wildcards.
+        Requires the :jenkins-plugins:`SCM API Plugin <scm-api>`.
+
+        * **includes** ('str'): Space-separated list
+            of name patterns to consider. You may use * as a wildcard;
+            for example: `master release*`
+        * **excludes** ('str'): Name patterns to
+            ignore even if matched by the includes list.
+            For example: `release*`
+    """
+    if data.get("filter-by-name-wildcard", None):
+        wscmf_name = XML.SubElement(
+            traits,
+            "jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait",
+            {"plugin": "scm-api"},
+        )
+        wscmf_name_mapping = [
+            ("includes", "includes", ""),
+            ("excludes", "excludes", ""),
+        ]
+        helpers.convert_mapping_to_xml(
+            wscmf_name,
+            data.get("filter-by-name-wildcard", ""),
+            wscmf_name_mapping,
             fail_required=True,
         )
