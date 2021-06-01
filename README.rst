@@ -51,7 +51,7 @@ Mailing list:
 
 IRC:
 
-* ``#openstack-jjb`` on Freenode
+* ``#openstack-jjb`` on OFTC
 
 More details on how you can contribute is available on our wiki at:
 
