@@ -1,0 +1,12 @@
+name: githuborg-job-full
+project-type: githuborg
+project: example-project
+
+periodic-folder-trigger: 2h
+prune-dead-branches: false
+number-to-keep: 10
+days-to-keep: 90
+script-path: some.Jenkinsfile
+
+github-org:
+    repo-owner: example-owner
