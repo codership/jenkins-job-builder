@@ -667,8 +667,8 @@ Which will be expanded to the following yaml before being processed:
 .. literalinclude:: /../../tests/localyaml/fixtures/anchors_aliases.oyaml
 
 
-.. _full length example: https://yaml.org/spec/1.2/spec.html#id2761803
-.. _anchors and aliases: https://yaml.org/spec/1.2/spec.html#id2765878
+.. _full length example: https://yaml.org/spec/1.2/#id2761803
+.. _anchors and aliases: https://yaml.org/spec/1.2/#id2765878
 
 
 Custom Yaml Tags
