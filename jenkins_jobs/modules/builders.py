@@ -202,6 +202,97 @@ def copyartifact(registry, xml_parent, data):
     helpers.convert_mapping_to_xml(t, data, mappings, fail_required=True)
     helpers.copyartifact_build_selector(t, data)
 
+def s3_copyartifact(registry, xml_parent, data):
+    """yaml: s3-copyartifact
+
+    Copy artifact from another project. Requires the :jenkins-plugins:`S3 Copy
+    Artifact plugin <s3-copyartifact>`.
+
+    Please note using the multijob-build for which-build argument requires
+    the :jenkins-plugins:`Multijob plugin <jenkins-multijob-plugin>`
+
+    :arg str project: Project to copy from
+    :arg str filter: what files to copy
+    :arg str target: Target base directory for copy, blank means use workspace
+    :arg bool flatten: Flatten directories (default false)
+    :arg bool optional: If the artifact is missing (for any reason) and
+        optional is true, the build won't fail because of this builder
+        (default false)
+    :arg bool do-not-fingerprint: Disable automatic fingerprinting of copied
+        artifacts (default false)
+    :arg str which-build: which build to get artifacts from
+        (optional, default last-successful)
+
+        :which-build values:
+            * **last-successful**
+            * **last-completed**
+            * **specific-build**
+            * **last-saved**
+            * **upstream-build**
+            * **permalink**
+            * **workspace-latest**
+            * **build-param**
+            * **downstream-build**
+            * **multijob-build**
+
+    :arg str build-number: specifies the build number to get when
+        when specific-build is specified as which-build
+    :arg str permalink: specifies the permalink to get when
+        permalink is specified as which-build
+
+        :permalink values:
+            * **last**
+            * **last-stable**
+            * **last-successful**
+            * **last-failed**
+            * **last-unstable**
+            * **last-unsuccessful**
+
+    :arg bool stable: specifies to get only last stable build when
+        last-successful is specified as which-build
+    :arg bool fallback-to-last-successful: specifies to fallback to
+        last successful build when upstream-build is specified as which-build
+    :arg str param: specifies to use a build parameter to get the build when
+        build-param is specified as which-build
+    :arg str upstream-project-name: specifies the project name of downstream
+        when downstream-build is specified as which-build
+    :arg str upstream-build-number: specifies the number of the build to
+        find its downstream build when downstream-build is specified as
+        which-build
+    :arg str parameter-filters: Filter matching jobs based on these
+        parameters (optional)
+    :arg str exclude: Specify paths or patterns of artifacts to
+        exclude, even if specified in "Artifacts to copy". (default '')
+    :arg str result-var-suffix: The build number of the selected build
+        will be recorded into the variable named
+        COPYARTIFACT_BUILD_NUMBER_(SUFFIX)
+        for later build steps to reference. (default '')
+
+    Example:
+
+    .. literalinclude:: ../../tests/builders/fixtures/copy-artifact001.yaml
+       :language: yaml
+
+    Multijob Example:
+
+    .. literalinclude:: ../../tests/builders/fixtures/copy-artifact004.yaml
+       :language: yaml
+    """
+    t = XML.SubElement(xml_parent, "hudson.plugins.s3.S3CopyArtifact")
+    mappings = [
+        ("project", "projectName", None),
+        ("filter", "filter", ""),
+        ("target", "target", ""),
+        ("flatten", "flatten", False),
+        ("optional", "optional", False),
+        ("do-not-fingerprint", "doNotFingerprintArtifacts", False),
+        ("parameter-filters", "parameters", ""),
+        ("exclude", "exclude", ""),
+        ("result-var-suffix", "resultVariableSuffix", ""),
+    ]
+    helpers.convert_mapping_to_xml(t, data, mappings, fail_required=True)
+    helpers.copyartifact_build_selector(t, data)
+
 
 def change_assembly_version(registry, xml_parent, data):
     """yaml: change-assembly-version
